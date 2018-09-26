@@ -1,5 +1,7 @@
 package com.hniu.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -20,12 +22,14 @@ public class Borrows {
      * 借书日期
      */
     @Column(name = "borrow_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date borrowTime;
 
     /**
      * 还书日期
      */
     @Column(name = "repay_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date repayTime;
 
     /**
@@ -55,7 +59,7 @@ public class Borrows {
      */
     private Float fine;
 
-    private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
 
 
     /**
@@ -90,12 +94,8 @@ public class Borrows {
      *
      * @param borrowTime 借书日期
      */
-    public void setBorrowTime(String borrowTime) {
-        try {
-            this.borrowTime = format.parse(borrowTime);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    public void setBorrowTime(Date borrowTime) {
+            this.borrowTime = borrowTime;
     }
 
     /**
@@ -112,12 +112,8 @@ public class Borrows {
      *
      * @param repayTime 还书日期
      */
-    public void setRepayTime(String repayTime) {
-        try {
-            this.repayTime = format.parse(repayTime);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    public void setRepayTime(Date repayTime) {
+            this.repayTime = repayTime;
     }
 
     /**
