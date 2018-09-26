@@ -1,4 +1,4 @@
-package com.pn.controller;
+package com.hniu.realm;
 
 import com.hniu.entity.Admin;
 import com.hniu.entity.Permissions;

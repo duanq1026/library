@@ -14,4 +14,98 @@
     <result column="book_state_id" jdbcType="INTEGER" property="bookStateId" />
     <result column="fine" jdbcType="REAL" property="fine" />
   </resultMap>
+  <resultMap id="borrowsandreadandstatus" type="com.hniu.entity.vo.BorrowsVo" extends="BaseResultMap">
+  <association property="readers" javaType="com.hniu.entity.Readers">
+    <id column="reader_id" jdbcType="INTEGER" property="readerId" />
+    <result column="reader_type_id" jdbcType="INTEGER" property="readerTypeId" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="reader_name" jdbcType="VARCHAR" property="readerName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="sex" jdbcType="TINYINT" property="sex" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="expiration_time" jdbcType="TIMESTAMP" property="expirationTime" />
+    <result column="state" jdbcType="TINYINT" property="state" />
+    <result column="overdue_number" jdbcType="TINYINT" property="overdueNumber" />
+    <result column="reader_code" jdbcType="VARCHAR" property="readerCode" />
+    <result column="session_key" jdbcType="VARCHAR" property="sessionKey" />
+  </association>
+    <association property="bookStates" javaType="com.hniu.entity.BookStates">
+      <id column="book_state_id" jdbcType="INTEGER" property="bookStateId" />
+      <result column="book_id" jdbcType="INTEGER" property="bookId" />
+      <result column="bar_code" jdbcType="VARCHAR" property="barCode" />
+      <result column="state" jdbcType="TINYINT" property="state" />
+      <result column="borrow_number" jdbcType="SMALLINT" property="borrowNumber" />
+    </association>
+    <association property="books" javaType="com.hniu.entity.Books">
+      <id column="book_id" jdbcType="INTEGER" property="bookId" />
+      <result column="book_type_name" jdbcType="VARCHAR" property="bookTypeName" />
+      <result column="book_name" jdbcType="VARCHAR" property="bookName" />
+      <result column="img_path" jdbcType="VARCHAR" property="imgPath" />
+      <result column="isbn" jdbcType="VARCHAR" property="isbn" />
+      <result column="author" jdbcType="VARCHAR" property="author" />
+      <result column="press" jdbcType="VARCHAR" property="press" />
+      <result column="price" jdbcType="VARCHAR" property="price" />
+      <result column="publication_time" jdbcType="VARCHAR" property="publicationTime" />
+      <result column="page_number" jdbcType="INTEGER" property="pageNumber" />
+      <result column="number" jdbcType="SMALLINT" property="number" />
+      <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+      <result column="class_number" jdbcType="VARCHAR" property="classNumber" />
+      <result column="introduction" jdbcType="LONGVARCHAR" property="introduction" />
+      <result column="directory" jdbcType="LONGVARCHAR" property="directory" />
+    </association>
+</resultMap>
+    <select id="selectAllBorrows" resultMap="borrowsandreadandstatus">
+      SELECT * from tbl_borrows b
+      LEFT JOIN tbl_readers reader on b.reader_id = reader.reader_id
+      LEFT JOIN tbl_book_states sta on b.book_state_id = sta.book_state_id
+      LEFT JOIN tbl_books books on sta.book_id = books.book_id
+    </select>
+  <select id="selectByIdBorrows" resultMap="borrowsandreadandstatus" parameterType="Integer">
+    SELECT * from tbl_borrows b
+    LEFT JOIN tbl_readers reader on b.reader_id = reader.reader_id
+    LEFT JOIN tbl_book_states sta on b.book_state_id = sta.book_state_id
+    LEFT JOIN tbl_books books on sta.book_id = books.book_id
+    WHERE reader.reader_id = #{readerId,jdbcType=INTEGER}
+  </select>
+  <update id="updateBorrows" parameterType="com.hniu.entity.Borrows">
+    UPDATE tbl_borrows
+    <set>
+      <if test="borrowTime != null and borrowTime != '' ">
+        borrow_time=#{borrowTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repayTime != null and repayTime != '' ">
+        repay_time=#{repayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="renew != null and renew != '' ">
+        renew=#{renew,jdbcType=BIT},
+      </if>
+      <if test="overdue != null and overdue != '' ">
+        overdue=#{overdue,jdbcType=BIT},
+      </if>
+      <if test="readerId != null and readerId != '' ">
+        reader_id=#{readerId,jdbcType=INTEGER},
+      </if>
+      <if test="bookStateId != null and bookStateId != '' ">
+        book_state_id=#{bookStateId,jdbcType=INTEGER},
+      </if>
+      <if test="fine != null and fine != '' ">
+        fine=#{fine,jdbcType=REAL},
+      </if>
+    </set>
+    WHERE borrow_id = #{borrowId,jdbcType=INTEGER}
+  </update>
+  <delete id="DelteBorrows" parameterType="Integer">
+    DELETE FROM tbl_borrows WHERE borrow_id = #{borrowId,jdbcType=INTEGER}
+  </delete>
+  <insert id="AddBorrows" parameterType="com.hniu.entity.Borrows">
+    INSERT INTO tbl_borrows(borrow_time,repay_time,renew,overdue,reader_id,book_state_id,fine)
+    VALUES (#{borrowTime,jdbcType=TIMESTAMP},#{repayTime,jdbcType=TIMESTAMP},
+              #{renew,jdbcType=BIT},#{overdue,jdbcType=BIT},#{readerId,jdbcType=INTEGER},#{bookStateId,jdbcType=INTEGER},
+              #{fine,jdbcType=REAL})
+  </insert>
 </mapper>

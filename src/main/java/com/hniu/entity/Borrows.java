@@ -1,7 +1,11 @@
 package com.hniu.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.persistence.*;
 
 @Table(name = "tbl_borrows")
 public class Borrows {
@@ -51,6 +55,9 @@ public class Borrows {
      */
     private Float fine;
 
+    private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+
     /**
      * 获取借阅id
      *
@@ -83,8 +90,12 @@ public class Borrows {
      *
      * @param borrowTime 借书日期
      */
-    public void setBorrowTime(Date borrowTime) {
-        this.borrowTime = borrowTime;
+    public void setBorrowTime(String borrowTime) {
+        try {
+            this.borrowTime = format.parse(borrowTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -101,8 +112,12 @@ public class Borrows {
      *
      * @param repayTime 还书日期
      */
-    public void setRepayTime(Date repayTime) {
-        this.repayTime = repayTime;
+    public void setRepayTime(String repayTime) {
+        try {
+            this.repayTime = format.parse(repayTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

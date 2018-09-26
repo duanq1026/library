@@ -13,4 +13,37 @@
     <result column="AppSecret" jdbcType="VARCHAR" property="appsecret" />
     <result column="bar_Name" jdbcType="VARCHAR" property="barName" />
   </resultMap>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select sys_id, sys_name, sys_img, page_line, AppID, AppSecret, bar_Name
+    from tbl_system
+  </select>
+
+  <update id="updateByPrimaryKey" parameterType="com.hniu.entity.System">
+    update tbl_system
+    <set>
+      <if test="sysId != null and sysId != '' ">
+        sys_id = #{sysId,jdbcType=INTEGER},
+      </if>
+      <if test="sysName != null and sysName != '' ">
+        sys_name = #{sysName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysImg != null and sysImg != '' ">
+        sys_img = #{sysImg,jdbcType=VARCHAR},
+      </if>
+      <if test="pageLine != null and pageLine != '' ">
+        page_line = #{pageLine,jdbcType=TINYINT},
+      </if>
+      <if test="appid != null and appid != '' ">
+        AppID = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="appsecret != null and appsecret != '' ">
+        AppSecret = #{appsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="barName != null and barName != '' ">
+        bar_Name = #{barName,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where sys_id = #{sysId,jdbcType=INTEGER}
+  </update>
 </mapper>

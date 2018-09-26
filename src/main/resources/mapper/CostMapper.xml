@@ -12,4 +12,67 @@
     <result column="pay_type" jdbcType="TINYINT" property="payType" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
+  <resultMap id="Base" type="com.hniu.entity.vo.CostVo" extends="BaseResultMap">
+    <association property="readers" javaType="com.hniu.entity.Readers">
+      <id column="reader_id" jdbcType="INTEGER" property="readerId" />
+      <result column="reader_type_id" jdbcType="INTEGER" property="readerTypeId" />
+      <result column="role_id" jdbcType="INTEGER" property="roleId" />
+      <result column="reader_name" jdbcType="VARCHAR" property="readerName" />
+      <result column="password" jdbcType="VARCHAR" property="password" />
+      <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+      <result column="phone" jdbcType="VARCHAR" property="phone" />
+      <result column="address" jdbcType="VARCHAR" property="address" />
+      <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+      <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+      <result column="sex" jdbcType="TINYINT" property="sex" />
+      <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+      <result column="expiration_time" jdbcType="TIMESTAMP" property="expirationTime" />
+      <result column="state" jdbcType="TINYINT" property="state" />
+      <result column="overdue_number" jdbcType="TINYINT" property="overdueNumber" />
+      <result column="reader_code" jdbcType="VARCHAR" property="readerCode" />
+      <result column="session_key" jdbcType="VARCHAR" property="sessionKey" />
+    </association>
+  </resultMap>
+
+  <select id="selectAllCost" resultMap="Base">
+    SELECT * from tbl_costs cost
+    LEFT JOIN tbl_readers readers on cost.reader_id = readers.reader_id
+    ORDER BY cost.create_time DESC
+  </select>
+
+  <select id="selectByIdCost" resultMap="Base" parameterType="INteger">
+        SELECT * from tbl_costs c
+		left join tbl_readers r on
+		c.reader_id = r.reader_id
+		where r.reader_id = #{readerId,jdbcType=INTEGER}
+		ORDER BY c.create_time desc
+  </select>
+
+  <insert id="AddOneCost" parameterType="com.hniu.entity.Cost">
+    insert into tbl_costs(reader_id,cost_type,`numeric`,pay_type,create_time)
+    values (#{readerId,jdbcType=INTEGER},#{costType,jdbcType=TINYINT},#{numeric,jdbcType=REAL},#{payType,jdbcType=TINYINT},now())
+  </insert>
+
+  <delete id="DeleteOneCost" parameterType="Integer">
+    DELETE FROM tbl_costs WHERE cost_id = #{costId,jdbcType=INTEGER}
+  </delete>
+
+  <update id="UpdateOneCost" parameterType="com.hniu.entity.Cost">
+    UPDATE tbl_costs
+    <set>
+      <if test="readerId != null and readerId != '' ">
+        reader_id = #{readerId,jdbcType=INTEGER},
+      </if>
+      <if test="costType != null and costType != '' ">
+        cost_type = #{costType,jdbcType=TINYINT},
+      </if>
+      <if test="numeric != null and numeric != '' ">
+        `numeric` = #{numeric,jdbcType=REAL},
+      </if>
+      <if test="payType != null and payType != '' ">
+        pay_type = #{payType,jdbcType=TINYINT},
+    </if>
+    </set>
+    WHERE cost_id = #{costId,jdbcType=INTEGER}
+  </update>
 </mapper>
