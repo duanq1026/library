@@ -25,6 +25,9 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
   redis:
     host: 39.108.71.48
+  data:
+    solr:
+      host: http://www.tiannoyi.com/solr
 mybatis:
   # 指定sql映射文件位置
   mapper-locations: classpath:mapper/*.xml
