@@ -2,9 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hniu.mapper.ReadersMapper">
   <resultMap id="BaseResultMap" type="com.hniu.entity.Readers">
-    <!--
-      WARNING - @mbg.generated
-    -->
     <id column="reader_id" jdbcType="INTEGER" property="readerId" />
     <result column="reader_type_id" jdbcType="INTEGER" property="readerTypeId" />
     <result column="role_id" jdbcType="INTEGER" property="roleId" />
@@ -23,4 +20,119 @@
     <result column="reader_code" jdbcType="VARCHAR" property="readerCode" />
     <result column="session_key" jdbcType="VARCHAR" property="sessionKey" />
   </resultMap>
+    <resultMap id="VoResultMap" type="com.hniu.entity.vo.ReaderVo">
+        <id column="reader_id" jdbcType="INTEGER" property="readerId" />
+        <result column="reader_type_name" jdbcType="VARCHAR" property="readerTypeName" />
+        <result column="borrow_day" javaType="INTEGER" property="borrowDay"/>
+        <result column="borrow_number" javaType="INTEGER" property="borrowNumber"/>
+        <result column="reader_name" jdbcType="VARCHAR" property="readerName" />
+        <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
+        <result column="address" jdbcType="VARCHAR" property="address" />
+        <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+        <result column="sex" jdbcType="TINYINT" property="sex" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="expiration_time" jdbcType="TIMESTAMP" property="expirationTime" />
+        <result column="state" jdbcType="TINYINT" property="state" />
+        <result column="overdue_number" jdbcType="TINYINT" property="overdueNumber" />
+        <result column="reader_code" jdbcType="VARCHAR" property="readerCode" />
+        <result column="session_key" jdbcType="VARCHAR" property="sessionKey" />
+    </resultMap>
+  <resultMap id="Maps" type="java.util.HashMap">
+    <result column="sex" jdbcType="TINYINT" property="key" />
+    <result column="num" jdbcType="INTEGER" property="value" />
+  </resultMap>
+    <sql id="commom">
+        SELECT r.reader_id, t.reader_type_name,t.borrow_day,t.borrow_number,reader_name,r.wechat, r.phone,
+        r.address, r.birthday, r.sex, r.create_time,r.expiration_time,r.state,r.overdue_number,
+        r.reader_code, r.session_key
+        FROM tbl_readers r
+        LEFT JOIN tbl_reader_types t
+        ON  r.reader_type_id = t.reader_type_id
+    </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_readers
+    where reader_id = #{readerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hniu.entity.Readers" keyProperty="readerId" useGeneratedKeys="true">
+    insert into tbl_readers (reader_id, reader_type_id, role_id, 
+      reader_name, password, wechat, 
+      phone, address, id_card, 
+      birthday, sex, create_time, 
+      expiration_time, state, overdue_number, 
+      reader_code, session_key)
+    values (#{readerId,jdbcType=INTEGER}, #{readerTypeId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, 
+      #{readerName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=TIMESTAMP}, #{sex,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{expirationTime,jdbcType=TIMESTAMP}, #{state,jdbcType=TINYINT}, #{overdueNumber,jdbcType=TINYINT}, 
+      #{readerCode,jdbcType=VARCHAR}, #{sessionKey,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hniu.entity.Readers">
+    update tbl_readers
+    <set>
+    	<if test="readerName!=null and !&quot;&quot;.equals(readerName.trim())">
+    		reader_name = #{readerName,jdbcType=VARCHAR},
+    	</if>
+    	<if test="phone!=null and !&quot;&quot;.equals(phone.trim())">
+    		phone = #{phone,jdbcType=VARCHAR},
+    	</if>
+    	<if test="address!=null and !&quot;&quot;.equals(address.trim())">
+    		 address = #{address,jdbcType=VARCHAR},
+    	</if>
+    	<if test="birthday!=null">
+            birthday = #{birthday,jdbcType=TINYINT},
+    	</if>
+    	<if test="sex!=null">
+    		sex = #{sex,jdbcType=TINYINT},
+    	</if>
+    </set>
+    where reader_id = #{readerId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="VoResultMap">
+      <include refid="commom"></include>
+    where reader_id = #{readerId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="VoResultMap">
+      <include refid="commom"></include>
+  </select>
+  <select id="selectByShearch" parameterType="java.lang.String" resultMap="VoResultMap">
+   <include refid="commom"></include>
+    where CONCAT(reader_name,wechat) like concat('%',#{keyword},'%')
+  </select>
+  <select id="selectSexCount" resultMap="Maps">
+    SELECT sex,count(1) num FROM tbl_readers group by sex
+  </select>
+  <!--<select id="selectAgeCount" parameterType="map" resultType="java.lang.Integer">
+    SELECT count(reader_id) FROM tbl_readers where age between #{min} and #{max}
+  </select>-->
+  <select id="selectByRCode" parameterType="java.lang.String" resultMap="VoResultMap">
+      <include refid="commom"></include>
+    where reader_code = #{readerCode,jdbcType=VARCHAR}
+  </select>
+    <select id="selectBorrowBooks" parameterType="java.lang.String" resultMap="VoResultMap">
+        <include refid="commom"></include>
+        where r.reader_code = #{readerCode,jdbcType=VARCHAR} and r.state = 1
+    </select>
+  <update id="updateOverdue" parameterType="java.lang.Integer">
+  	update tbl_readers set overdue_number = overdue_number +1 where reader_id = #{readerId}
+  </update>
+    <select id="selectRcode" resultType="java.lang.String">
+  	SELECT reader_code FROM tbl_readers ORDER BY reader_code DESC LIMIT 1
+  </select>
+    <select id="selectByOther"  parameterType="com.hniu.entity.Readers" resultMap="VoResultMap">
+        <include refid="commom"></include>
+        <where>
+            <if test="readerTypeId!=null">
+                and reader_type_id = #{readerTypeId}
+            </if>
+            <if test="state!=null">
+                and state = #{state}
+            </if>
+            <if test="overdueNumber!=null">
+                and overdue_number = #{overdueNumber}
+            </if>
+        </where>
+    </select>
+
 </mapper>

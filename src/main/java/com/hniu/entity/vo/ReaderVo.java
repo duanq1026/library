@@ -1,12 +1,13 @@
-package com.hniu.entity;
+package com.hniu.entity.vo;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
 @Table(name = "tbl_readers")
-public class Readers {
+public class ReaderVo implements Serializable {
     /**
      * 读者id
      */
@@ -17,22 +18,15 @@ public class Readers {
     /**
      * 读者类别id
      */
-    @Column(name = "reader_type_id")
-    private Integer readerTypeId;
+    @Column(name="reader_type_name")
+    private String readerTypeName;
 
-    /**
-     * 角色id
-     */
-    @Column(name = "role_id")
-    private Integer roleId;
-
+    private Integer borrowDay;
     /**
      * 读者姓名
      */
     @Column(name = "reader_name")
     private String readerName;
-
-    private String password;
 
     /**
      * 微信号
@@ -49,11 +43,6 @@ public class Readers {
      */
     private String address;
 
-    /**
-     * 身份证号
-     */
-    @Column(name = "id_card")
-    private String idCard;
 
     /**
      * 出生日期
@@ -65,11 +54,6 @@ public class Readers {
      */
     private Byte sex;
 
-    /**
-     * 办证日期
-     */
-    @Column(name = "create_time")
-    private Date createTime;
 
     /**
      * 到期日期
@@ -78,16 +62,21 @@ public class Readers {
     private Date expirationTime;
 
     /**
-     * 证书状态
+     * 办证日期
      */
-    private Byte state;
-
+    @Column(name = "create_time")
+    private Date createTime;
+    private Integer borrowNumber;
     /**
      * 逾期次数
      */
     @Column(name = "overdue_number")
     private Byte overdueNumber;
 
+    /**
+     * 证书状态
+     */
+    private Byte state;
     /**
      * 读者编号
      */
@@ -96,6 +85,30 @@ public class Readers {
 
     @Column(name = "session_key")
     private String sessionKey;
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Byte getState() {
+        return state;
+    }
+
+    public void setState(Byte state) {
+        this.state = state;
+    }
+
+    public Integer getBorrowDay() {
+        return borrowDay;
+    }
+
+    public void setBorrowDay(Integer borrowDay) {
+        this.borrowDay = borrowDay;
+    }
 
     /**
      * 获取读者id
@@ -115,41 +128,6 @@ public class Readers {
         this.readerId = readerId;
     }
 
-    /**
-     * 获取读者类别id
-     *
-     * @return reader_type_id - 读者类别id
-     */
-    public Integer getReaderTypeId() {
-        return readerTypeId;
-    }
-
-    /**
-     * 设置读者类别id
-     *
-     * @param readerTypeId 读者类别id
-     */
-    public void setReaderTypeId(Integer readerTypeId) {
-        this.readerTypeId = readerTypeId;
-    }
-
-    /**
-     * 获取角色id
-     *
-     * @return role_id - 角色id
-     */
-    public Integer getRoleId() {
-        return roleId;
-    }
-
-    /**
-     * 设置角色id
-     *
-     * @param roleId 角色id
-     */
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
-    }
 
     /**
      * 获取读者姓名
@@ -169,19 +147,6 @@ public class Readers {
         this.readerName = readerName;
     }
 
-    /**
-     * @return password
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * @param password
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     /**
      * 获取微信号
@@ -237,23 +202,6 @@ public class Readers {
         this.address = address;
     }
 
-    /**
-     * 获取身份证号
-     *
-     * @return id_card - 身份证号
-     */
-    public String getIdCard() {
-        return idCard;
-    }
-
-    /**
-     * 设置身份证号
-     *
-     * @param idCard 身份证号
-     */
-    public void setIdCard(String idCard) {
-        this.idCard = idCard;
-    }
 
     /**
      * 获取出生日期
@@ -291,23 +239,6 @@ public class Readers {
         this.sex = sex;
     }
 
-    /**
-     * 获取办证日期
-     *
-     * @return create_time - 办证日期
-     */
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    /**
-     * 设置办证日期
-     *
-     * @param createTime 办证日期
-     */
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
 
     /**
      * 获取到期日期
@@ -327,23 +258,6 @@ public class Readers {
         this.expirationTime = expirationTime;
     }
 
-    /**
-     * 获取证书状态
-     *
-     * @return state - 证书状态
-     */
-    public Byte getState() {
-        return state;
-    }
-
-    /**
-     * 设置证书状态
-     *
-     * @param state 证书状态
-     */
-    public void setState(Byte state) {
-        this.state = state;
-    }
 
     /**
      * 获取逾期次数
@@ -395,4 +309,19 @@ public class Readers {
         this.sessionKey = sessionKey;
     }
 
+    public String getReaderTypeName() {
+        return readerTypeName;
+    }
+
+    public void setReaderTypeName(String readerTypeName) {
+        this.readerTypeName = readerTypeName;
+    }
+
+    public Integer getBorrowNumber() {
+        return borrowNumber;
+    }
+
+    public void setBorrowNumber(Integer borrowNumber) {
+        this.borrowNumber = borrowNumber;
+    }
 }

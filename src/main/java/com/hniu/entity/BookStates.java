@@ -1,6 +1,8 @@
 package com.hniu.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Table(name = "tbl_book_states")
 public class BookStates {
@@ -9,7 +11,6 @@ public class BookStates {
      */
     @Id
     @Column(name = "book_state_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer bookStateId;
 
     /**
@@ -27,13 +28,13 @@ public class BookStates {
     /**
      * 是否在馆
      */
-    private Byte state;
+    private Byte state = 1;
 
     /**
      * 借阅次数
      */
     @Column(name = "borrow_number")
-    private Short borrowNumber;
+    private Short borrowNumber = 0;
 
     /**
      * 获取在馆id
