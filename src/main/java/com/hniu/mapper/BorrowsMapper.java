@@ -17,4 +17,6 @@ public interface BorrowsMapper extends Mapper<Borrows> {
     public int AddBorrows(Borrows borrows);
 
     public int DelteBorrows(Integer borrows_id);
+
+    public int GetBorrowNumByReaderCode(@Param("readerCode") String readerCode);
 }

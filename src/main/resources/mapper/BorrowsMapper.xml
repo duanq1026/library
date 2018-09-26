@@ -108,4 +108,9 @@
               #{renew,jdbcType=BIT},#{overdue,jdbcType=BIT},#{readerId,jdbcType=INTEGER},#{bookStateId,jdbcType=INTEGER},
               #{fine,jdbcType=REAL})
   </insert>
+
+    <select id="GetBorrowNumByReaderCode" parameterType="String" resultType="Integer">
+        SELECT count(1) from tbl_borrows b,tbl_readers re
+      where re.reader_id = b.reader_id and re.reader_code = #{readerCode,jdbcType=VARCHAR}
+    </select>
 </mapper>

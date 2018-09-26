@@ -65,4 +65,9 @@ public class BorrowsServiceImpl implements BorrowsService {
         i = borrowsMapper.DelteBorrows(borrows_id);
         return i;
     }
+
+    @Override
+    public int GetBorrowNumByReaderCode(String readerCode) {
+        return borrowsMapper.GetBorrowNumByReaderCode(readerCode);
+    }
 }
