@@ -1,6 +1,8 @@
 package com.hniu.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Table(name = "tbl_books")
 public class Books {
@@ -9,25 +11,21 @@ public class Books {
      */
     @Id
     @Column(name = "book_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer bookId;
 
     /**
      * 类别id
      */
-    @Column(name = "book_type_id")
-    private Integer bookTypeId;
+    private String bookTypeName;
 
     /**
      * 书名
      */
-    @Column(name = "book_name")
     private String bookName;
 
     /**
      * 封面图片
      */
-    @Column(name = "img_path")
     private String imgPath;
 
     /**
@@ -53,13 +51,11 @@ public class Books {
     /**
      * 出版日期
      */
-    @Column(name = "publication_time")
     private String publicationTime;
 
     /**
      * 页数
      */
-    @Column(name = "page_number")
     private Integer pageNumber;
 
     /**
@@ -70,13 +66,11 @@ public class Books {
     /**
      * 入库日期
      */
-    @Column(name = "create_time")
     private String createTime;
 
     /**
      * 分类号
      */
-    @Column(name = "class_number")
     private String classNumber;
 
     /**
@@ -107,22 +101,12 @@ public class Books {
         this.bookId = bookId;
     }
 
-    /**
-     * 获取类别id
-     *
-     * @return book_type_id - 类别id
-     */
-    public Integer getBookTypeId() {
-        return bookTypeId;
+    public String getBookTypeName() {
+        return bookTypeName;
     }
 
-    /**
-     * 设置类别id
-     *
-     * @param bookTypeId 类别id
-     */
-    public void setBookTypeId(Integer bookTypeId) {
-        this.bookTypeId = bookTypeId;
+    public void setBookTypeName(String bookTypeName) {
+        this.bookTypeName = bookTypeName;
     }
 
     /**

@@ -1,6 +1,8 @@
 package com.hniu.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Table(name = "tbl_reader_types")
 public class ReaderTypes {

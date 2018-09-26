@@ -1,27 +1,20 @@
 package com.hniu.service;
 
 import com.hniu.entity.BookTypes;
-import com.hniu.entity.wrap.PageWrap;
-import com.hniu.exception.SystemErrorException;
 
 import java.util.List;
 
 public interface BookTypeService {
-    //管理员分页查询图书分类
-    PageWrap selectAll(Integer pageNum, Integer pageSize);
+    int deleteByPrimaryKey(Integer bookTypeId);
 
-    BookTypes selectByPrimaryKey(Integer id);
+    int insert(BookTypes record);
 
-    //客户端查询分级图书分类
-    List selectMenus();
+    BookTypes selectByPrimaryKey(Integer bookTypeId);
 
-    //插入图书分类
-    BookTypes insert(BookTypes bookTypes) throws SystemErrorException;
+    List<BookTypes> selectAll();
 
-    //更新图书分类
-    int update(BookTypes bookTypes);
+    int updateByPrimaryKey(BookTypes record);
 
+    List<BookTypes> selectByFatherNode(Integer fatherNode);
 
-    //删除图书分类
-    int delete(Integer id);
 }

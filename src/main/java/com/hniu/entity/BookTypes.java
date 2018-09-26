@@ -1,6 +1,8 @@
 package com.hniu.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Table(name = "tbl_book_types")
 public class BookTypes {
@@ -9,7 +11,6 @@ public class BookTypes {
      */
     @Id
     @Column(name = "book_type_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer bookTypeId;
 
     /**
@@ -100,15 +101,5 @@ public class BookTypes {
      */
     public void setClassNumber(String classNumber) {
         this.classNumber = classNumber;
-    }
-
-    @Override
-    public String toString() {
-        return "BookTypes{" +
-                "bookTypeId=" + bookTypeId +
-                ", bookTypeName='" + bookTypeName + '\'' +
-                ", fatherNode='" + fatherNode + '\'' +
-                ", classNumber='" + classNumber + '\'' +
-                '}';
     }
 }
