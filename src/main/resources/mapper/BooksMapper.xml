@@ -18,8 +18,8 @@
     <result column="number" jdbcType="SMALLINT" property="number" />
     <result column="create_time" jdbcType="VARCHAR" property="createTime" />
     <result column="class_number" jdbcType="VARCHAR" property="classNumber" />
-    <result column="introduction" jdbcType="LONGVARCHAR" property="introduction" />
-    <result column="directory" jdbcType="LONGVARCHAR" property="directory" />
+    <result column="introduction" property="introduction" />
+    <result column="directory" property="directory" />
   </resultMap>
   <select id="getBookList" resultType="com.hniu.entity.vo.BookVo">
     SELECT b.book_id bookId,b.book_name bookName,b.img_path imgPath,b.author author,b.press press,t.book_type_name bookTypeName
@@ -83,10 +83,10 @@ FROM (SELECT book_id,SUM(borrow_number) bow
         number = #{number},
       </if>
       <if test="introduction!=null and !&quot;&quot;.equals(introduction.trim())">
-        introduction = #{introduction,jdbcType="LONGVARCHAR"},
+        introduction = #{introduction},
       </if>
       <if test="directory!=null and !&quot;&quot;.equals(directory.trim())">
-        directory = #{directory,jdbcType="LONGVARCHAR"},
+        directory = #{directory},
       </if>
     </set>
     where book_id = #{bookId,jdbcType=INTEGER}
@@ -114,8 +114,8 @@ FROM (SELECT book_id,SUM(borrow_number) bow
 		#{number,jdbcType=SMALLINT},
 		#{createTime,jdbcType=VARCHAR},
 		#{classNumber,jdbcType=VARCHAR},
-		#{introduction,jdbcType=LONGVARCHAR},
-		#{directory,jdbcType=LONGVARCHAR},
+		#{introduction},
+		#{directory},
 		#{imgPath,jdbcType=VARCHAR})
   </sql>
     <sql id="commom">

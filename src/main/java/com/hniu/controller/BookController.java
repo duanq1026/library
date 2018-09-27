@@ -1,6 +1,7 @@
 package com.hniu.controller;
 
 import com.hniu.constan.StateCode;
+import com.hniu.entity.BookStates;
 import com.hniu.entity.Books;
 import com.hniu.entity.vo.BookVo;
 import com.hniu.entity.vo.PageVo;
@@ -121,6 +122,11 @@ public class BookController extends Base {
 		return packaging(StateCode.FAIL,null);
 	}
 
+	/**
+	 * 判断图书在管本数
+	 * @param bookId
+	 * @return
+	 */
 	@GetMapping(value ="books/count/{bookId}")
 	public Object isExist(@PathVariable Integer bookId) {
 		Integer count = bookService.isExist(bookId);
@@ -130,4 +136,17 @@ public class BookController extends Base {
 		return packaging(StateCode.FAIL,null);
 	}
 
+	/**
+	 * 查询图书状态id
+	 * @param barCode
+	 * @return
+	 */
+	@GetMapping(value = "books/by_state/{barCode}")
+	public Object selectByCode(@PathVariable String barCode) {
+		 BookStates bookStates = bookService.selectByCode(barCode);
+		if(bookStates!=null) {
+			return packaging(StateCode.SUCCESS,bookStates);
+		}
+		return packaging(StateCode.FAIL,null);
+	}
 }
