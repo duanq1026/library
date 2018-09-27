@@ -25,13 +25,10 @@ import java.util.UUID;
 public class LibraryApplicationTests {
 
     @Autowired
-    BookTypeServiceImpl bs;
-
-    @Autowired
     RedisTemplate redisTemplate;
 
     @Test
     public void hello(){
-
+        redisTemplate.opsForValue().set("ss","ss" );
     }
 }
