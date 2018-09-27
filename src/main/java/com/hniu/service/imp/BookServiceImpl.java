@@ -122,5 +122,8 @@ public class BookServiceImpl implements BookService {
     public Integer isExist(Integer bookId) {
         return bookStatesMapper.isExist(bookId);
     }
-
+    @Override
+    public BookStates selectByCode(String barCode) {
+        return bookStatesMapper.selectByCode(barCode);
+    }
 }
