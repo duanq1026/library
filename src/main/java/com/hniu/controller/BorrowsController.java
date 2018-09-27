@@ -1,8 +1,10 @@
 package com.hniu.controller;
 
 import com.hniu.constan.StateCode;
+import com.hniu.entity.BookStates;
 import com.hniu.entity.Borrows;
 import com.hniu.entity.vo.ReaderVo;
+import com.hniu.mapper.BookStatesMapper;
 import com.hniu.service.BorrowsService;
 import com.hniu.service.ReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class BorrowsController extends Base {
 
     @Autowired
     private ReaderService readerService;
+
+    @Autowired
+    private BookStatesMapper bookStatesMapper;
 
     @GetMapping("/borrows")
     public Object selectAllBorrows(Integer pageNum,Integer pageSize){
@@ -71,19 +76,24 @@ public class BorrowsController extends Base {
         borrows.setFine(new Float(0));
         int i = 0;
         i = borrowsService.AddBorrows(borrows);
-        if (i==0){
-            return packaging(StateCode.FAIL,"Add fail");
+        if (i!=0){
+            BookStates bookStates = new BookStates();
+            bookStates.setBookStateId(borrows.getBookStateId());
+            bookStates.setBorrowNumber((short)(bookStatesMapper.selectByPrimaryKey(bookStates.getBookStateId()).getBorrowNumber() + 1));
+            bookStates.setState((byte)1);
+            bookStatesMapper.updateByPrimaryKey(bookStates);
+            return packaging(StateCode.SUCCESS,"Add success");
         }
-        return packaging(StateCode.SUCCESS,"Add success");
+        return packaging(StateCode.FAIL,"Add fail");
     }
 
     @DeleteMapping("/borrows/{id}")
     public Object DelteBorrows(@PathVariable("id") Integer borrows_id){
         int i = 0;
         i = borrowsService.DelteBorrows(borrows_id);
-        if (i==0){
-            return packaging(StateCode.FAIL,"Delete fail");
+        if (i!=0){
+            return packaging(StateCode.SUCCESS,"Delete success");
         }
-        return packaging(StateCode.SUCCESS,"Delete success");
+        return packaging(StateCode.FAIL,"Delete fail");
     }
 }
