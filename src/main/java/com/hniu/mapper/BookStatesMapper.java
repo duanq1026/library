@@ -16,4 +16,6 @@ public interface BookStatesMapper {
     int updateByPrimaryKey(BookStates record);
 
     Integer isExist(Integer bookId);
+
+    BookStates selectByCode(String barCode);
 }

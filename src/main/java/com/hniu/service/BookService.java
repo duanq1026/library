@@ -1,6 +1,7 @@
 package com.hniu.service;
 
 
+import com.hniu.entity.BookStates;
 import com.hniu.entity.Books;
 import com.hniu.entity.vo.BookVo;
 import com.hniu.entity.vo.PageVo;
@@ -62,4 +63,11 @@ public interface BookService {
      * @return
      */
     Integer isExist(Integer bookId);
+
+    /**
+     * 查询图书状态id
+     * @param barCode
+     * @return
+     */
+    public BookStates selectByCode(String barCode);
 }
