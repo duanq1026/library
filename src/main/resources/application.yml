@@ -28,6 +28,12 @@ spring:
   data:
     solr:
       host: http://www.tiannoyi.com/solr
+  servlet:
+    multipart:
+      max-file-size: 50Mb
+      max-request-size: 50Mb
+  resources:
+    static-locations: spring.resources.static-locations=classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${web.upload-path}
 mybatis:
   # 指定sql映射文件位置
   mapper-locations: classpath:mapper/*.xml
@@ -40,16 +46,14 @@ shiro:
   loginUrl: /login
   successUrl: /hello
   unauthorizedUrl: /error
-
 pagehelper:
   page-size-zero: true
   reasonable: true
 logging:
   level:
      com.hniu.mapper: debug
-
-
-
-
-
+web:
+  upload-path: C:/books/upload/images/
+#http://www.tiannoyi.com/ 上线时请改为这个地址...
+  imagePath: http://localhost:8080/
 
