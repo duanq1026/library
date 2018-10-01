@@ -46,6 +46,19 @@ public class BorrowHistorys {
     private Float fine;
 
     /**
+     * 图书id
+     */
+    private Integer bookId;
+
+    public Integer getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(Integer bookId) {
+        this.bookId = bookId;
+    }
+
+    /**
      * 获取历史借阅id
      *
      * @return history_id - 历史借阅id
