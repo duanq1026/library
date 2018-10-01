@@ -56,7 +56,7 @@ public class BorrowsController extends Base {
         try {
              date1 = format.parse(format.format(date));
         } catch (ParseException e) {
-            // TODO Auto-generated catch block
+            // TODO Auto-generated catgch block
             e.printStackTrace();
         }
         Calendar cal = Calendar.getInstance();

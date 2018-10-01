@@ -10,7 +10,7 @@ import com.hniu.exception.NotLoginException;
 import java.util.List;
 
 public interface PermissionsService {
-    public List<Permissions> selectPermissions(Admin admin);
+    public List<Permissions> selectPermissions(Integer roleid);
 
     public List<Menu> selectMenu() throws NotLoginException;
 

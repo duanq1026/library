@@ -1,6 +1,7 @@
 package com.hniu.entity;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
@@ -96,6 +97,29 @@ public class Readers {
 
     @Column(name = "session_key")
     private String sessionKey;
+
+    public Readers(){
+
+    }
+
+    public Readers(Integer readerTypeId, Integer roleId, String readerName, String password, String wechat, String phone, String address, String idCard, Date birthday, Byte sex, Date createTime, Date expirationTime, Byte state, Byte overdueNumber, String readerCode, String sessionKey) {
+        this.readerTypeId = readerTypeId;
+        this.roleId = roleId;
+        this.readerName = readerName;
+        this.password = password;
+        this.wechat = wechat;
+        this.phone = phone;
+        this.address = address;
+        this.idCard = idCard;
+        this.birthday = birthday;
+        this.sex = sex;
+        this.createTime = createTime;
+        this.expirationTime = expirationTime;
+        this.state = state;
+        this.overdueNumber = overdueNumber;
+        this.readerCode = readerCode;
+        this.sessionKey = sessionKey;
+    }
 
     /**
      * 获取读者id

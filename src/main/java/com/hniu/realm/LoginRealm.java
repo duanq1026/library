@@ -36,7 +36,7 @@ public class LoginRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        List<Permissions> permissions = ps.selectPermissions((Admin) session.getAttribute("admin"));
+        List<Permissions> permissions = ps.selectPermissions(((Admin) session.getAttribute("admin")).getRoleId());
         for (Permissions p : permissions) {
             info.addStringPermission(p.getPermissionStr());
         }
