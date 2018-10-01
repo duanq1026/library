@@ -23,10 +23,20 @@
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.hniu.entity.BookStates">
     update tbl_book_states
-    set book_id = #{bookId,jdbcType=INTEGER},
-      bar_code = #{barCode,jdbcType=VARCHAR},
-      state = #{state,jdbcType=TINYINT},
-      borrow_number = #{borrowNumber,jdbcType=SMALLINT}
+    <set>
+      <if test="bookId!=null">
+        book_id = #{bookId,jdbcType=INTEGER},
+      </if>
+      <if test="barCode!=null and !&quot;&quot;.equals(barCode.trim())">
+        bar_code = #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="state!=null">
+        state = #{state,jdbcType=TINYINT},
+      </if>
+      <if test="borrowNumber!=null">
+        borrow_number = #{borrowNumber,jdbcType=SMALLINT},
+      </if>
+    </set>
     where book_state_id = #{bookStateId,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -45,5 +55,10 @@
     ON b.book_id = s.book_id
     WHERE b.book_id = #{bookId,jdbcType=INTEGER}
     GROUP BY s.book_id
+  </select>
+  <select id="selectByCode" parameterType="string" resultMap="BaseResultMap">
+    select book_state_id, book_id, bar_code, state, borrow_number
+    from tbl_book_states
+    where bar_code = #{barCode}
   </select>
 </mapper>

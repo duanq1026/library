@@ -50,6 +50,10 @@
         LEFT JOIN tbl_reader_types t
         ON  r.reader_type_id = t.reader_type_id
     </sql>
+    <select id="selectByWechat" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select reader_id,reader_type_id,role_id,reader_name,password,wechat,phone,address,
+        id_card,birthday,sex,create_time,expiration_time,state,overdue_number,reader_code,session_key from tbl_readers  where wechat = #{_parameter}
+    </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tbl_readers
     where reader_id = #{readerId,jdbcType=INTEGER}
