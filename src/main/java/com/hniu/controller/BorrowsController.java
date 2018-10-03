@@ -39,6 +39,27 @@ public class BorrowsController extends Base {
     @PutMapping("/borrows/{id}")
     public Object updateBorrows(Borrows borrows, @PathVariable("id") Integer id){
         borrows.setBorrowId(id);
+        ReaderVo readerVo = readerService.selectByPrimaryKey(borrows.getReaderId());
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = borrows.getRepayTime();
+        Date date1 = null,date3= null;
+        try {
+            date1 = format.parse(format.format(date));
+        } catch (ParseException e) {
+            // TODO Auto-generated catgch block
+            e.printStackTrace();
+        }
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DAY_OF_MONTH,readerVo.getBorrowDay());
+        Date date2 = cal.getTime();
+        try {
+            date3 = format.parse(format.format(date2));
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        borrows.setRepayTime(date3);
         int i = 0;
         i = borrowsService.updateBorrows(borrows);
         if (i==0){
