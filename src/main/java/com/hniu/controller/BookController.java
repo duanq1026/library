@@ -95,9 +95,9 @@ public class BookController extends Base {
     public Object booleanIsbn(@PathVariable String isbn) {
 		Books boots = bookService.selectByIbsn(isbn);
 		if(boots != null) {
-			return packaging(StateCode.SUCCESS,true);
+			return packaging(StateCode.SUCCESS,boots);
 		}
-		return packaging(StateCode.FAIL,false);
+		return packaging(StateCode.FAIL,null);
     }
 
 
