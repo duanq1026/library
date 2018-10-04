@@ -69,7 +69,7 @@
       LEFT JOIN tbl_books books on sta.book_id = books.book_id
     </select>
   <select id="selectByIdBorrows" resultMap="borrowsandreadandstatus" parameterType="Integer">
-    SELECT *,datediff(CURDATE(), repay_time)  as sum_dcbrfhje from tbl_borrows b
+    SELECT *,datediff(CURDATE(), repay_time)  as daysum from tbl_borrows b
     LEFT JOIN tbl_readers reader on b.reader_id = reader.reader_id
     LEFT JOIN tbl_book_states sta on b.book_state_id = sta.book_state_id
     LEFT JOIN tbl_books books on sta.book_id = books.book_id
@@ -96,7 +96,7 @@
       <if test="bookStateId != null and bookStateId != '' ">
         book_state_id=#{bookStateId,jdbcType=INTEGER},
       </if>
-      <if test="fine != null and fine != '' ">
+      <if test="fine != null ">
         fine=#{fine,jdbcType=REAL},
       </if>
     </set>
