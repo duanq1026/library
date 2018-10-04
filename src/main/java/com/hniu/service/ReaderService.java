@@ -15,6 +15,12 @@ import java.util.Map;
  * @version 1.0
  */
 public interface ReaderService {
+
+    /**
+     * 根据openid查询读者
+     */
+    Readers selectByWechat(String wxid);
+
     /**
      * Title: deleteByPrimaryKey
      * Description: 根据读者id主键删除读者

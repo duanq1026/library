@@ -13,13 +13,24 @@ public class BorrowsVo extends Borrows {
 
     private Books books;
 
-    public Books getBook() {
+    private Integer daysum;
+
+    public Books getBooks() {
         return books;
     }
 
-    public void setBook(Books book) {
-        this.books = book;
+    public void setBooks(Books books) {
+        this.books = books;
     }
+
+    public Integer getDaysum() {
+        return daysum;
+    }
+
+    public void setDaysum(Integer daysum) {
+        this.daysum = daysum;
+    }
+
 
     public BookStates getBookStates() {
         return bookStates;

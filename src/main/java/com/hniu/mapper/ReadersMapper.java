@@ -3,11 +3,14 @@ package com.hniu.mapper;
 import com.hniu.entity.Readers;
 import com.hniu.entity.vo.PageVo;
 import com.hniu.entity.vo.ReaderVo;
+import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 import java.util.Map;
 
-public interface ReadersMapper {
+public interface ReadersMapper{
+	Readers selectByWechat(String id);
+
     int deleteByPrimaryKey(Integer readerId);
 
     int insert(Readers record);

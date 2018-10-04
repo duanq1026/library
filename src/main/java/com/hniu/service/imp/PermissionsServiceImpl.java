@@ -31,8 +31,8 @@ public class PermissionsServiceImpl implements PermissionsService {
     @Autowired
     private System system;
 
-    public List<Permissions> selectPermissions(Admin admin) {
-        RolesVo role = rs.selectByPrimaryKeyVo(admin.getRoleId());
+    public List<Permissions> selectPermissions(Integer roleid) {
+        RolesVo role = rs.selectByPrimaryKeyVo(roleid);
         List<Permissions> permissions = role.getPermissions();
         return permissions;
     }
@@ -42,7 +42,7 @@ public class PermissionsServiceImpl implements PermissionsService {
         if(admin == null){
             throw new NotLoginException();
         }
-        List<Permissions> permissions = selectPermissions(admin);
+        List<Permissions> permissions = selectPermissions(admin.getRoleId());
         List<Menu> menus = new ArrayList<Menu>();
         for (Permissions p1 : permissions) {
             if (p1.getFatherNode() == 0) {

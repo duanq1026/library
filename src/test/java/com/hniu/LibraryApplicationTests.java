@@ -5,9 +5,12 @@ import com.hniu.entity.Admin;
 import com.hniu.entity.BookTypes;
 import com.hniu.entity.vo.AdminVo;
 import com.hniu.entity.vo.PermissionsVo;
+import com.hniu.exception.SystemErrorException;
 import com.hniu.mapper.AdminMapper;
 import com.hniu.mapper.PermissionsMapper;
+import com.hniu.service.WxLoginService;
 import com.hniu.service.imp.BookTypeServiceImpl;
+import com.hniu.util.RedisUtil;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,10 +28,13 @@ import java.util.UUID;
 public class LibraryApplicationTests {
 
     @Autowired
-    RedisTemplate redisTemplate;
-
+    WxLoginService wx;
     @Test
     public void hello(){
-        redisTemplate.opsForValue().set("ss","ss" );
+        try {
+            wx.wxLogin("001EEmpb1QO9Lu0afRpb1UO1pb1EEmph");
+        } catch (SystemErrorException e) {
+            e.printStackTrace();
+        }
     }
 }

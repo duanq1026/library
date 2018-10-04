@@ -31,6 +31,11 @@ public class ReaderServiceImpl implements ReaderService {
     private ReadersMapper readersMapper;
 
     @Override
+    public Readers selectByWechat(String wxid) {
+        return readersMapper.selectByWechat(wxid);
+    }
+
+    @Override
     public int deleteByPrimaryKey(Integer rId) {
 
         return readersMapper.deleteByPrimaryKey(rId);
