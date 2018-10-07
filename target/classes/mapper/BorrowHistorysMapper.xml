@@ -12,6 +12,7 @@
     <result column="renew" jdbcType="BIT" property="renew" />
     <result column="overdue" jdbcType="BIT" property="overdue" />
     <result column="fine" jdbcType="REAL" property="fine" />
+    <result column="book_id" jdbcType="INTEGER" property="bookId" />
   </resultMap>
   <resultMap id="historyandread" type="com.hniu.entity.vo.BorrowHistorysVo" extends="BaseResultMap">
     <association property="readers" javaType="com.hniu.entity.Readers">
@@ -26,19 +27,12 @@
       <result column="id_card" jdbcType="VARCHAR" property="idCard" />
       <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
       <result column="sex" jdbcType="TINYINT" property="sex" />
-      <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+      <!--<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />-->
       <result column="expiration_time" jdbcType="TIMESTAMP" property="expirationTime" />
       <result column="state" jdbcType="TINYINT" property="state" />
       <result column="overdue_number" jdbcType="TINYINT" property="overdueNumber" />
       <result column="reader_code" jdbcType="VARCHAR" property="readerCode" />
       <result column="session_key" jdbcType="VARCHAR" property="sessionKey" />
-    </association>
-    <association property="bookStates" javaType="com.hniu.entity.BookStates">
-      <id column="book_state_id" jdbcType="INTEGER" property="bookStateId" />
-      <result column="book_id" jdbcType="INTEGER" property="bookId" />
-      <result column="bar_code" jdbcType="VARCHAR" property="barCode" />
-      <result column="state" jdbcType="TINYINT" property="state" />
-      <result column="borrow_number" jdbcType="SMALLINT" property="borrowNumber" />
     </association>
     <association property="books" javaType="com.hniu.entity.Books">
       <id column="book_id" jdbcType="INTEGER" property="bookId" />
@@ -52,36 +46,28 @@
       <result column="publication_time" jdbcType="VARCHAR" property="publicationTime" />
       <result column="page_number" jdbcType="INTEGER" property="pageNumber" />
       <result column="number" jdbcType="SMALLINT" property="number" />
-      <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+
       <result column="class_number" jdbcType="VARCHAR" property="classNumber" />
-      <result column="introduction" jdbcType="LONGVARCHAR" property="introduction" />
-      <result column="directory" jdbcType="LONGVARCHAR" property="directory" />
-    </association>
-    <association property="borrows" javaType="com.hniu.entity.Borrows">
-      <id column="borrow_id" jdbcType="INTEGER" property="borrowId" />
-      <result column="borrow_time" jdbcType="TIMESTAMP" property="borrowTime" />
-      <result column="repay_time" jdbcType="TIMESTAMP" property="repayTime" />
-      <result column="renew" jdbcType="BIT" property="renew" />
-      <result column="overdue" jdbcType="BIT" property="overdue" />
-      <result column="reader_id" jdbcType="INTEGER" property="readerId" />
-      <result column="book_state_id" jdbcType="INTEGER" property="bookStateId" />
-      <result column="fine" jdbcType="REAL" property="fine" />
+      <result column="introduction" property="introduction" />
+      <result column="directory" property="directory" />
     </association>
   </resultMap>
   <select id="selectAllBorrowHistorys" resultMap="historyandread">
-    SELECT * from tbl_borrows b
-    LEFT JOIN tbl_readers reader on b.reader_id = reader.reader_id
-    LEFT JOIN tbl_borrow_historys bh on bh.reader_id = reader.reader_id
-    LEFT JOIN tbl_book_states sta on b.book_state_id = sta.book_state_id
-    LEFT JOIN tbl_books books on sta.book_id = books.book_id
+    SELECT
+	  *
+    FROM
+        tbl_borrow_historys bh
+    LEFT JOIN tbl_books b on bh.book_id = b.book_id
+    LEFT JOIN tbl_readers readers on bh.reader_id = readers.reader_id
   </select>
   <select id="selectByReaderIdBorrowHistorys" resultMap="historyandread" parameterType="Integer">
-    SELECT * from tbl_borrows b
-    LEFT JOIN tbl_readers reader on b.reader_id = reader.reader_id
-    LEFT JOIN tbl_borrow_historys bh on bh.reader_id = reader.reader_id
-    LEFT JOIN tbl_book_states sta on b.book_state_id = sta.book_state_id
-    LEFT JOIN tbl_books books on sta.book_id = books.book_id
-    WHERE reader.reader_id = #{readerId,jdbcType=INTEGER}
+    SELECT
+        *
+    FROM
+        tbl_borrow_historys bh
+    LEFT JOIN tbl_books b on bh.book_id = b.book_id
+    LEFT JOIN tbl_readers readers on bh.reader_id = readers.reader_id
+    WHERE readers.reader_id = #{readerId,jdbcType=INTEGER}
   </select>
 
 </mapper>
