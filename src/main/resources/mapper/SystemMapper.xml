@@ -12,19 +12,17 @@
     <result column="AppID" jdbcType="VARCHAR" property="appid" />
     <result column="AppSecret" jdbcType="VARCHAR" property="appsecret" />
     <result column="bar_Name" jdbcType="VARCHAR" property="barName" />
+    <result column="fine" jdbcType="FLOAT" property="fine"/>
   </resultMap>
 
   <select id="selectAll" resultMap="BaseResultMap">
-    select sys_id, sys_name, sys_img, page_line, AppID, AppSecret, bar_Name
+    select sys_id, sys_name, sys_img, page_line, AppID, AppSecret, bar_Name,fine
     from tbl_system
   </select>
 
   <update id="updateByPrimaryKey" parameterType="com.hniu.entity.System">
     update tbl_system
     <set>
-      <if test="sysId != null and sysId != '' ">
-        sys_id = #{sysId,jdbcType=INTEGER},
-      </if>
       <if test="sysName != null and sysName != '' ">
         sys_name = #{sysName,jdbcType=VARCHAR},
       </if>
@@ -42,6 +40,9 @@
       </if>
       <if test="barName != null and barName != '' ">
         bar_Name = #{barName,jdbcType=VARCHAR}
+      </if>
+      <if test="fine != null">
+        fine = #{fine,jdbcType=FLOAT}
       </if>
     </set>
     where sys_id = #{sysId,jdbcType=INTEGER}

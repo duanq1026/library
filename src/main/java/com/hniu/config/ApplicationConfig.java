@@ -27,7 +27,7 @@ public class ApplicationConfig {
             System system = systems.get(0);
             return system;
         } catch (Exception e) {
-            return new System(1, "图书管理系统", "/img/icon.icon", new Byte("10"), "appid", "appsecret", "HNIUBS");
+            return new System(1, "图书管理系统", "/img/icon.icon", new Byte("10"), "appid", "appsecret", "HNIUBS",new Float(0));
         }
     }
 

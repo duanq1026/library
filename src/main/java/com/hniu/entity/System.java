@@ -43,11 +43,16 @@ public class System {
      */
     @Column(name = "bar_Name")
     private String barName;
+    /**
+     * 罚款金额
+     */
+    @Column(name = "fine")
+    private Float fine;
 
     public System() {
     }
 
-    public System(Integer sysId, String sysName, String sysImg, Byte pageLine, String appid, String appsecret, String barName) {
+    public System(Integer sysId, String sysName, String sysImg, Byte pageLine, String appid, String appsecret, String barName,Float fine) {
         this.sysId = sysId;
         this.sysName = sysName;
         this.sysImg = sysImg;
@@ -55,8 +60,16 @@ public class System {
         this.appid = appid;
         this.appsecret = appsecret;
         this.barName = barName;
+        this.fine = fine;
     }
 
+    public Float getFine() {
+        return fine;
+    }
+
+    public void setFine(Float fine) {
+        this.fine = fine;
+    }
 
     /**
      * @return sys_id
