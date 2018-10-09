@@ -101,8 +101,11 @@ public class BookController extends Base {
     }
 
 
-
-
+	/**
+	 * 根据条形码查书籍信息
+	 * @param barCode
+	 * @return
+	 */
 	@GetMapping(value="/books/states/{barCode}")
     public Object selectByRCode(@PathVariable String barCode) {
 		Books books = bookService.selectByBarCode(barCode);
@@ -112,7 +115,11 @@ public class BookController extends Base {
 		return packaging(StateCode.FAIL,null);
 	}
 
-
+	/**
+	 * 书的借阅排名
+	 * @param pageBookVo
+	 * @return
+	 */
 	@GetMapping(value="/books/group")
 	public Object selectRaning(PageVo<BookVo> pageBookVo) {
 		bookService.selectRaning(pageBookVo);
