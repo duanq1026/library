@@ -12,6 +12,8 @@ import com.hniu.util.RedisUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,8 @@ import java.util.*;
 
 @Service
 public class WxLoginServiceImpl implements WxLoginService {
+
+    private static final Logger logger = LoggerFactory.getLogger(WxLoginServiceImpl.class);
 
     @Autowired
     System system;
@@ -45,13 +49,16 @@ public class WxLoginServiceImpl implements WxLoginService {
 
     @Override
     public String wxLogin(String code) throws SystemErrorException {
-        String uuid = null;
-        //根据code去微信服务器获取openid和sessionkey
-        ResponseEntity<String> entity = restTemplate.getForEntity("https://api.weixin.qq.com/sns/jscode2session?" +
+        String url = "https://api.weixin.qq.com/sns/jscode2session?" +
                 "appid=" + system.getAppid() +
                 "&secret=" + system.getAppsecret() +
                 "&js_code=" + code +
-                "&grant_type=authorization_code", String.class);
+                "&grant_type=authorization_code";
+        String uuid = null;
+        logger.info("调用微信接口："+url);
+        //根据code去微信服务器获取openid和sessionkey
+        ResponseEntity<String> entity = restTemplate.getForEntity(url, String.class);
+        logger.info("微信接口返回值："+entity.getBody());
         try {
             JsonNode jsonNode = objectMapper.readTree(entity.getBody());
             String errcode = jsonNode.findPath("errcode").toString();
@@ -62,8 +69,6 @@ public class WxLoginServiceImpl implements WxLoginService {
                 String session_key = jsonNode.findPath("session_key").toString().replace("\"", "");
                 String openid = jsonNode.findPath("openid").toString().replace("\"", "");
                 uuid = UUID.randomUUID().toString().replace("-", "");
-                //将数据保存到redis
-                redisUtil.setObject(uuid,session_key+","+openid,3*24l);
                 Subject subject = SecurityUtils.getSubject();
                 //查询数据库是否有这个微信号登录过
                 Readers readers = rs.selectByWechat(openid);
@@ -75,6 +80,8 @@ public class WxLoginServiceImpl implements WxLoginService {
                     Date time = rightNow.getTime();
                     readers = new Readers(1, 3, "微信用户", EncryptUtil.encryption("123",openid ).get("password"), openid, "","" , "", null,new Byte("0") , new Date(), time,new Byte("0"),new Byte("0"), "" ,"");
                     rs.insert(readers);
+                    //将数据保存到redis
+                    redisUtil.setObject(uuid,session_key+","+openid+","+readers.getReaderId(),3*24l);
                 }
                 //登录
                 subject.login(new UsernamePasswordToken(readers.getWechat(),readers.getPassword()));
