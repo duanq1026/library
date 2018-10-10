@@ -93,7 +93,7 @@ public class BorrowsController extends Base {
      * @param token
      * @return
      */
-    @PutMapping("/borrows/{token}")
+    @PutMapping("/wx_borrows/{token}")
     public Object updateBorrowsOfWx(@PathVariable("token") String token,Borrows borrows){
         String object = (String) redisUtil.getObject(token);
         if(object == null){

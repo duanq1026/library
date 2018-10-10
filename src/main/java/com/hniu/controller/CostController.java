@@ -23,7 +23,7 @@ public class CostController extends Base {
     }
 
     @GetMapping("/cost/{readerId}")
-    public Object selectByName(@PathVariable("readerId") Integer readerId, Integer pageNum, Integer pageSize){
+    public Object selectByReaderId(@PathVariable("readerId") Integer readerId, Integer pageNum, Integer pageSize){
         PageWrap data = costService.selectByIdCost(readerId,pageNum,pageSize);
         return packaging(StateCode.SUCCESS,data);
     }
@@ -32,14 +32,14 @@ public class CostController extends Base {
      * 微信查询缴费记录根据读者id
      *
      */
-    @GetMapping("/cost/{token}")
+    @GetMapping("/wx_cost/{token}")
     public Object selectByNameOfWx(@PathVariable("token") String token, Integer pageNum, Integer pageSize){
         String object = (String) redisUtil.getObject(token);
         if(object == null){
             return packaging(StateCode.FAIL,"error");
         }
         String[] str = object.split(",");
-        return selectByName(Integer.parseInt(str[2]),pageNum,pageSize);
+        return selectByReaderId(Integer.parseInt(str[2]),pageNum,pageSize);
     }
 
     @PostMapping("/cost")

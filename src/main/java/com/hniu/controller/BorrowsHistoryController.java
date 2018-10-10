@@ -34,7 +34,7 @@ public class BorrowsHistoryController extends Base {
     /**
      * 微信查询历史缴费
      */
-    @GetMapping("/borrowsHistory/{token}")
+    @GetMapping("/wx_borrowsHistory/{token}")
     public Object selectByNameHistory(@PathVariable("token") String token, Integer pageNum, Integer pageSize){
         String object = (String) redisUtil.getObject(token);
         if(object == null){
