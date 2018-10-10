@@ -25,10 +25,6 @@ public class SearchServiceImpl implements SearchService {
         query.setStart((pageBookVo.getPage()-1)*pageBookVo.getRows());
         query.setRows(pageBookVo.getRows());
         query.set("df", "book_keywords");
-        query.setHighlight(true);
-        query.addHighlightField("book_book_name");
-        query.setHighlightSimplePre("<em style=\"color:red\">");
-        query.setHighlightSimplePost("</em>");
         searchMapper.search(query,pageBookVo);
     }
 }
