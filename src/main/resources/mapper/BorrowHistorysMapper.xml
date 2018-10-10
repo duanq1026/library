@@ -52,21 +52,25 @@
       <result column="directory" property="directory" />
     </association>
   </resultMap>
-  <select id="selectAllBorrowHistorys" resultMap="historyandread">
-    SELECT
-	  *
+  <sql id="getAll">
+        SELECT
+	  readers.reader_id,readers.reader_type_id,readers.role_id,readers.reader_name,readers.`password`,readers.wechat,
+      readers.phone,readers.address,readers.id_card,readers.birthday,readers.sex,readers.create_time,readers.expiration_time,
+      readers.state,readers.overdue_number,readers.reader_code,readers.session_key,
+      bh.history_id,bh.reader_id,bh.borrow_time,bh.repay_time,bh.renew,bh.overdue,bh.fine,bh.book_id,
+      b.book_id,b.book_name,b.isbn, b.author, b.press,b.price, b.publication_time,b.page_number,b.number,
+	  b.create_time, b.class_number,b.introduction,b.directory,img_path,t.book_type_name book_type_name
     FROM
         tbl_borrow_historys bh
     LEFT JOIN tbl_books b on bh.book_id = b.book_id
     LEFT JOIN tbl_readers readers on bh.reader_id = readers.reader_id
+    LEFT JOIN tbl_book_types t ON b.book_type_id = t.book_type_id
+  </sql>
+  <select id="selectAllBorrowHistorys" resultMap="historyandread">
+    <include refid="getAll"/>
   </select>
   <select id="selectByReaderIdBorrowHistorys" resultMap="historyandread" parameterType="Integer">
-    SELECT
-        *
-    FROM
-        tbl_borrow_historys bh
-    LEFT JOIN tbl_books b on bh.book_id = b.book_id
-    LEFT JOIN tbl_readers readers on bh.reader_id = readers.reader_id
+    <include refid="getAll"/>
     WHERE readers.reader_id = #{readerId,jdbcType=INTEGER}
   </select>
 
