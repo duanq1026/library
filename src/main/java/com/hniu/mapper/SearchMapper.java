@@ -48,8 +48,9 @@ public class SearchMapper {
             bookVo.setImgPath((String)solrDocument.get("book_img_path"));
             bookVo.setBookTypeName((String) solrDocument.get("book_type_name"));
             bookVo.setAuthor((String) solrDocument.get("book_author"));
-            Map<String, List<String>> map = highlighting.get(solrDocument.get("id"));
-            bookVo.setBookName(toHighlighting(map.get("book_book_name"),solrDocument));
+
+            ///Map<String, List<String>> map = highlighting.get(solrDocument.get("id"));
+            bookVo.setBookName((String)solrDocument.get("book_book_name"));
 
             //添加到列表
             bookVoList.add(bookVo);
