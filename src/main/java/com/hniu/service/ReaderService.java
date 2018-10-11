@@ -35,7 +35,7 @@ public interface ReaderService {
      * @param record
      * @return
      */
-    int insert(Readers record);
+    Readers insert(Readers record);
     /**
      *
      * Title: selectByPrimaryKey
