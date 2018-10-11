@@ -46,7 +46,7 @@ server:
   tomcat:
     uri-encoding: utf-8
 thymeleaf:
-           cache: falseo
+           cache: false
 shiro:
   loginUrl: /login
   successUrl: /hello

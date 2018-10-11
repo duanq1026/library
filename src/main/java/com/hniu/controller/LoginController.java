@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 
 @RestController
 public class LoginController extends Base {
@@ -27,7 +29,7 @@ public class LoginController extends Base {
     //微信登录
     @PostMapping("/wx_login")
     public Object login(String code) throws UserNameIsNullException, PassWordIsNullException {
-        String uuid;
+        Map<String,Object> uuid;
         try {
             uuid = ws.wxLogin(code);
         } catch (UserNameIsNullException uine) {
