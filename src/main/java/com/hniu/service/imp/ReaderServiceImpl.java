@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.io.Reader;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -42,15 +43,15 @@ public class ReaderServiceImpl implements ReaderService {
     }
 
     @Override
-    public synchronized int insert(Readers record) {
+    public synchronized Readers insert(Readers record) {
 		if(StringUtils.isEmpty(record.getReaderName())) {
-			return 0;
+			return null;
 		}
 		if(StringUtils.isEmpty(record.getWechat())) {
-			return 0;
+			return null;
 		}
 		if(StringUtils.isEmpty(record.getReaderTypeId())) {
-			return 0;
+			return null;
 		}
 
 		record.setOverdueNumber(Byte.parseByte("0"));
@@ -81,8 +82,10 @@ public class ReaderServiceImpl implements ReaderService {
 		date = calendar.getTime();
 		record.setExpirationTime(date);
         record.setState((byte)1);
-
-		return readersMapper.insert(record);
+        if(readersMapper.insert(record)>0){
+            return record;
+        }
+		return null;
     }
 
     @Override

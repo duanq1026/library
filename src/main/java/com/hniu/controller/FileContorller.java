@@ -23,8 +23,8 @@ public class FileContorller extends Base{
      * 文件上传
      */
     @PostMapping("/fileUpload")
-    public Object upload(@RequestParam("fileName") MultipartFile file){
-        String upload = FileUtils.upload(file, this.path, file.getOriginalFilename());
+    public Object upload(String file){
+        String upload = FileUtils.generateImage(file, this.path);
         if(StringUtils.isEmpty(upload)){
             return packaging(StateCode.FAIL,null);
         }else{

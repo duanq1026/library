@@ -1,9 +1,12 @@
 package com.hniu.util;
 
 import org.springframework.web.multipart.MultipartFile;
+import sun.misc.BASE64Decoder;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * 文件上传工具包
@@ -14,36 +17,32 @@ public class FileUtils {
      *
      * @param file 文件
      * @param path 文件存放路径
-     * @param fileName 源文件名
+     * @param  path 源文件名
      * @return
      */
-    public static String upload(MultipartFile file, String path, String fileName){
-        fileName = FileNameUtils.getFileName(fileName);
-        // 生成新的文件名
-        String realPath = path  +fileName;
-
-        //使用原文件名
-        //String realPath = path + "/" + fileName;
-
-        File dest = new File(realPath);
-
-        //判断文件父目录是否存在
-        if(!dest.getParentFile().exists()){
-            dest.getParentFile().mkdirs();
+    public static String generateImage(String file, String path) {
+        if (file == null) {
+            return null;
         }
-
+        BASE64Decoder decoder = new BASE64Decoder();
         try {
-            //保存文件
-            file.transferTo(dest);
-            return fileName;
-        } catch (IllegalStateException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            return null;
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            return null;
+        // 解密
+        byte[] b = decoder.decodeBuffer(file);
+        // 处理数据
+        for (int i = 0; i < b.length; ++i) {
+            if (b[i] < 0) {
+            b[i] += 256;
+            }
+        }
+        String fileName = UUIDUtils.getUUID()+".jpg";
+        path = path + fileName;
+        OutputStream out = new FileOutputStream(path);
+        out.write(b);
+        out.flush();
+        out.close();
+        return fileName;
+        } catch (Exception e) {
+        return null;
         }
 
     }

@@ -64,7 +64,7 @@ public class ReaderController extends Base {
      */
 	@PostMapping(value="/readers")
 	public Object insert(Readers reader) {
-		if(readerService.insert(reader)>0) {
+		if(readerService.insert(reader)!=null) {
 			return packaging(StateCode.SUCCESS,reader);
 		}
 		return packaging(StateCode.FAIL,null);
