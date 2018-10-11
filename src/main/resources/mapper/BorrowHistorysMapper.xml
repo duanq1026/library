@@ -27,7 +27,7 @@
       <result column="id_card" jdbcType="VARCHAR" property="idCard" />
       <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
       <result column="sex" jdbcType="TINYINT" property="sex" />
-      <!--<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />-->
+      <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
       <result column="expiration_time" jdbcType="TIMESTAMP" property="expirationTime" />
       <result column="state" jdbcType="TINYINT" property="state" />
       <result column="overdue_number" jdbcType="TINYINT" property="overdueNumber" />
@@ -46,7 +46,7 @@
       <result column="publication_time" jdbcType="VARCHAR" property="publicationTime" />
       <result column="page_number" jdbcType="INTEGER" property="pageNumber" />
       <result column="number" jdbcType="SMALLINT" property="number" />
-
+      <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
       <result column="class_number" jdbcType="VARCHAR" property="classNumber" />
       <result column="introduction" property="introduction" />
       <result column="directory" property="directory" />
