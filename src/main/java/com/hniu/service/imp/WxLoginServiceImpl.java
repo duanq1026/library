@@ -7,10 +7,8 @@ import com.hniu.entity.System;
 import com.hniu.exception.SystemErrorException;
 import com.hniu.service.ReaderService;
 import com.hniu.service.WxLoginService;
-import com.hniu.util.EncryptUtil;
 import com.hniu.util.RedisUtil;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,7 +46,8 @@ public class WxLoginServiceImpl implements WxLoginService {
     }
 
     @Override
-    public String wxLogin(String code) throws SystemErrorException {
+    public Map<String, Object> wxLogin(String code) throws SystemErrorException {
+        Map<String, Object> map = new HashMap<>();
         String url = "https://api.weixin.qq.com/sns/jscode2session?" +
                 "appid=" + system.getAppid() +
                 "&secret=" + system.getAppsecret() +
@@ -74,20 +73,21 @@ public class WxLoginServiceImpl implements WxLoginService {
                 Readers readers = rs.selectByWechat(openid);
                 //没有就生成一个
                 if(readers == null){
-                    Calendar rightNow = Calendar.getInstance();
-                    rightNow.setTime(new Date());
-                    rightNow.add(Calendar.YEAR, 3);
-                    Date time = rightNow.getTime();
-                    readers = new Readers(1, 3, "微信用户", EncryptUtil.encryption("123",openid ).get("password"), openid, "","" , "", null,new Byte("0") , new Date(), time,new Byte("0"),new Byte("0"), "" ,"");
-                    rs.insert(readers);
+                    Readers r = new Readers();
+                    r.setWechat(openid);
+                    r.setReaderTypeId(1);
+                    r.setReaderName("微信用户");
+                    readers=rs.insert(r);
                 }
                 //将数据保存到redis
                 redisUtil.setObject(uuid,session_key+","+openid+","+readers.getReaderId(),3*24l);
+                map.put("token", uuid);
+                map.put("readerCode", readers.getReaderCode());
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return uuid;
+        return map;
 
     }
 }
