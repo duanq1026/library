@@ -7,6 +7,7 @@ import com.hniu.entity.vo.ReaderVo;
 import com.hniu.mapper.BookStatesMapper;
 import com.hniu.service.BorrowsService;
 import com.hniu.service.ReaderService;
+import com.hniu.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +27,9 @@ public class BorrowsController extends Base {
     @Autowired
     private BookStatesMapper bookStatesMapper;
 
+    @Autowired
+    private RedisUtil redisUtil;
+
     @GetMapping("/borrows")
     public Object selectAllBorrows(Integer pageNum,Integer pageSize){
         return packaging(StateCode.SUCCESS,borrowsService.selectAllBorrows(pageNum, pageSize));
@@ -34,6 +38,20 @@ public class BorrowsController extends Base {
     @GetMapping("/borrows/{Id}")
     public Object selectByNamesBorrows(@PathVariable("Id") Integer Id, Integer pageNum, Integer pageSize){
         return packaging(StateCode.SUCCESS,borrowsService.selectByIdBorrows(Id, pageNum, pageSize));
+    }
+
+    /**
+     *
+     * 微信查询借阅根据id
+     */
+    @GetMapping("/wx_borrows/{token}")
+    public Object selectByNamesBorrowsOfWX(@PathVariable("token") String token, Integer pageNum, Integer pageSize){
+        String object = (String) redisUtil.getObject(token);
+        if(object == null){
+            return packaging(StateCode.FAIL,"error");
+        }
+        String[] split = object.split(",");
+        return selectByNamesBorrows(Integer.parseInt(split[2]),pageNum,pageSize);
     }
 
     @PutMapping("/borrows/{id}")
@@ -68,6 +86,21 @@ public class BorrowsController extends Base {
             return packaging(StateCode.FAIL,"Update fail");
         }
         return packaging(StateCode.SUCCESS,"Update success");
+    }
+
+    /**
+     * 微信续借
+     * @param token
+     * @return
+     */
+    @PutMapping("/wx_borrows/{token}")
+    public Object updateBorrowsOfWx(@PathVariable("token") String token,Borrows borrows){
+        String object = (String) redisUtil.getObject(token);
+        if(object == null){
+            return packaging(StateCode.FAIL,"error");
+        }
+        String[] str = object.split(",");
+        return updateBorrows(borrows,Integer.parseInt(str[2]));
     }
 
     @PostMapping("/borrows")
