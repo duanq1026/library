@@ -58,15 +58,18 @@
       <result column="introduction" jdbcType="LONGVARCHAR" property="introduction" />
       <result column="directory" jdbcType="LONGVARCHAR" property="directory" />
     </association>
+    <association property="daysum" javaType="Integer">
+      <result column="daysum" jdbcType="INTEGER" property="daysum"></result>
+    </association>
 </resultMap>
     <select id="selectAllBorrows" resultMap="borrowsandreadandstatus">
-      SELECT * from tbl_borrows b
+      SELECT *,datediff(CURDATE(), repay_time)  as daysum from tbl_borrows b
       LEFT JOIN tbl_readers reader on b.reader_id = reader.reader_id
       LEFT JOIN tbl_book_states sta on b.book_state_id = sta.book_state_id
       LEFT JOIN tbl_books books on sta.book_id = books.book_id
     </select>
   <select id="selectByIdBorrows" resultMap="borrowsandreadandstatus" parameterType="Integer">
-    SELECT * from tbl_borrows b
+    SELECT *,datediff(CURDATE(), repay_time)  as daysum from tbl_borrows b
     LEFT JOIN tbl_readers reader on b.reader_id = reader.reader_id
     LEFT JOIN tbl_book_states sta on b.book_state_id = sta.book_state_id
     LEFT JOIN tbl_books books on sta.book_id = books.book_id
@@ -75,10 +78,10 @@
   <update id="updateBorrows" parameterType="com.hniu.entity.Borrows">
     UPDATE tbl_borrows
     <set>
-      <if test="borrowTime != null and borrowTime != '' ">
+      <if test="borrowTime != null ">
         borrow_time=#{borrowTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="repayTime != null and repayTime != '' ">
+      <if test="repayTime != null ">
         repay_time=#{repayTime,jdbcType=TIMESTAMP},
       </if>
       <if test="renew != null and renew != '' ">
@@ -93,7 +96,7 @@
       <if test="bookStateId != null and bookStateId != '' ">
         book_state_id=#{bookStateId,jdbcType=INTEGER},
       </if>
-      <if test="fine != null and fine != '' ">
+      <if test="fine != null ">
         fine=#{fine,jdbcType=REAL},
       </if>
     </set>
@@ -113,4 +116,5 @@
         SELECT count(1) from tbl_borrows b,tbl_readers re
       where re.reader_id = b.reader_id and re.reader_code = #{readerCode,jdbcType=VARCHAR}
     </select>
+
 </mapper>
