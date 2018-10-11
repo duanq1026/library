@@ -80,11 +80,9 @@ public class WxLoginServiceImpl implements WxLoginService {
                     Date time = rightNow.getTime();
                     readers = new Readers(1, 3, "微信用户", EncryptUtil.encryption("123",openid ).get("password"), openid, "","" , "", null,new Byte("0") , new Date(), time,new Byte("0"),new Byte("0"), "" ,"");
                     rs.insert(readers);
-                    //将数据保存到redis
-                    redisUtil.setObject(uuid,session_key+","+openid+","+readers.getReaderId(),3*24l);
                 }
-                //登录
-                subject.login(new UsernamePasswordToken(readers.getWechat(),readers.getPassword()));
+                //将数据保存到redis
+                redisUtil.setObject(uuid,session_key+","+openid+","+readers.getReaderId(),3*24l);
             }
         } catch (IOException e) {
             e.printStackTrace();
