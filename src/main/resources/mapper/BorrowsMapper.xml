@@ -62,17 +62,25 @@
       <result column="daysum" jdbcType="INTEGER" property="daysum"></result>
     </association>
 </resultMap>
+  <sql id="getAll">
+    SELECT borrows.borrow_id,borrows.borrow_time,borrows.repay_time,borrows.renew,borrows.overdue,borrows.reader_id,
+      borrows.book_state_id,borrows.fine,
+      reader.reader_id,reader.reader_type_id,reader.role_id,reader.reader_name,reader.`password`,reader.wechat,reader.phone,
+      reader.address,reader.id_card,reader.birthday,reader.sex,reader.create_time,reader.expiration_time,reader.state,
+      reader.overdue_number,reader.reader_code,reader.session_key,sta.book_state_id,sta.book_id,sta.bar_code,sta.state,
+      sta.borrow_number,b.book_id,b.book_name,b.isbn, b.author, b.press,b.price, b.publication_time,b.page_number,
+	  b.number,b.create_time, b.class_number,b.introduction,
+	  b.directory,img_path,t.book_type_name book_type_name,datediff(CURDATE(), repay_time)  as daysum from tbl_borrows borrows
+      LEFT JOIN tbl_readers reader on borrows.reader_id = reader.reader_id
+      LEFT JOIN tbl_book_states sta on borrows.book_state_id = sta.book_state_id
+      LEFT JOIN tbl_books b on sta.book_id = b.book_id
+      LEFT JOIN tbl_book_types t ON b.book_type_id = t.book_type_id
+  </sql>
     <select id="selectAllBorrows" resultMap="borrowsandreadandstatus">
-      SELECT *,datediff(CURDATE(), repay_time)  as daysum from tbl_borrows b
-      LEFT JOIN tbl_readers reader on b.reader_id = reader.reader_id
-      LEFT JOIN tbl_book_states sta on b.book_state_id = sta.book_state_id
-      LEFT JOIN tbl_books books on sta.book_id = books.book_id
+      <include refid="getAll"/>
     </select>
   <select id="selectByIdBorrows" resultMap="borrowsandreadandstatus" parameterType="Integer">
-    SELECT *,datediff(CURDATE(), repay_time)  as daysum from tbl_borrows b
-    LEFT JOIN tbl_readers reader on b.reader_id = reader.reader_id
-    LEFT JOIN tbl_book_states sta on b.book_state_id = sta.book_state_id
-    LEFT JOIN tbl_books books on sta.book_id = books.book_id
+    <include refid="getAll"/>
     WHERE reader.reader_id = #{readerId,jdbcType=INTEGER}
   </select>
   <update id="updateBorrows" parameterType="com.hniu.entity.Borrows">

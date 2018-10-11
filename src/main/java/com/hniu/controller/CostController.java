@@ -4,6 +4,7 @@ import com.hniu.constan.StateCode;
 import com.hniu.entity.Cost;
 import com.hniu.entity.wrap.PageWrap;
 import com.hniu.service.CostService;
+import com.hniu.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,9 @@ public class CostController extends Base {
     @Autowired
     private CostService costService;
 
+    @Autowired
+    private RedisUtil redisUtil;
+
     @GetMapping("/cost")
     public Object selectAllCost(Integer pageNum, Integer pageSize){
         PageWrap data = costService.selectAllCost(pageNum,pageSize);
@@ -19,9 +23,23 @@ public class CostController extends Base {
     }
 
     @GetMapping("/cost/{readerId}")
-    public Object selectByName(@PathVariable("readerId") Integer readerId, Integer pageNum, Integer pageSize){
+    public Object selectByReaderId(@PathVariable("readerId") Integer readerId, Integer pageNum, Integer pageSize){
         PageWrap data = costService.selectByIdCost(readerId,pageNum,pageSize);
         return packaging(StateCode.SUCCESS,data);
+    }
+
+    /**
+     * 微信查询缴费记录根据读者id
+     *
+     */
+    @GetMapping("/wx_cost/{token}")
+    public Object selectByNameOfWx(@PathVariable("token") String token, Integer pageNum, Integer pageSize){
+        String object = (String) redisUtil.getObject(token);
+        if(object == null){
+            return packaging(StateCode.FAIL,"error");
+        }
+        String[] str = object.split(",");
+        return selectByReaderId(Integer.parseInt(str[2]),pageNum,pageSize);
     }
 
     @PostMapping("/cost")
