@@ -156,4 +156,18 @@ public class BookController extends Base {
 		}
 		return packaging(StateCode.FAIL,null);
 	}
+
+	/**
+	 * 根据条码删除图书
+	 * @param barCode
+	 * @return
+	 */
+	@DeleteMapping("books/{barCode}")
+	public Object deleteByCode(@PathVariable String barCode) {
+		int flag = bookService.deleteByCode(barCode);
+		if(flag>0) {
+			return packaging(StateCode.SUCCESS,"success");
+		}
+		return packaging(StateCode.FAIL,null);
+	}
 }

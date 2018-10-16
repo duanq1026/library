@@ -126,4 +126,10 @@ public class BookServiceImpl implements BookService {
     public BookStates selectByCode(String barCode) {
         return bookStatesMapper.selectByCode(barCode);
     }
+
+    @Override
+    public int deleteByCode(String barCode) {
+        BookStates bookStates = bookStatesMapper.selectByCode(barCode);
+        return bookStatesMapper.deleteByPrimaryKey(bookStates.getBookStateId());
+    }
 }

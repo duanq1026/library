@@ -70,4 +70,9 @@ public interface BookService {
      * @return
      */
     public BookStates selectByCode(String barCode);
+
+    /**
+     * 根据条码删除图书
+     */
+    public int deleteByCode(String barCode);
 }
