@@ -3,7 +3,9 @@ package com.hniu.service;
 
 import com.hniu.exception.SystemErrorException;
 
+import java.util.Map;
+
 public interface WxLoginService  {
 
-    String wxLogin(String code) throws SystemErrorException;
+    Map<String, Object> wxLogin(String code) throws SystemErrorException;
 }
