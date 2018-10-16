@@ -7,6 +7,16 @@ public class BorrowHistorysVo extends BorrowHistorys {
 
     private Books books;
 
+    private BookStates bookStates;
+
+    public BookStates getBookStates() {
+        return bookStates;
+    }
+
+    public void setBookStates(BookStates bookStates) {
+        this.bookStates = bookStates;
+    }
+
     public Books getBooks() {
         return books;
     }
