@@ -6,6 +6,7 @@ import com.hniu.entity.vo.PageVo;
 import com.hniu.entity.vo.ReaderVo;
 import com.hniu.service.ReaderService;
 import com.hniu.util.RedisUtil;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -105,6 +106,7 @@ public class ReaderController extends Base {
      * @param reader
      * @return
      */
+    @RequiresPermissions("reader:update")
 	@PutMapping(value="/readers/{reaedrId}")
 	public Object updateByPrimaryKey(Readers reader) {
 		if(readerService.updateByPrimaryKey(reader)>0) {

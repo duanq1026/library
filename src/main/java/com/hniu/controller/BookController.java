@@ -6,6 +6,7 @@ import com.hniu.entity.Books;
 import com.hniu.entity.vo.BookVo;
 import com.hniu.entity.vo.PageVo;
 import com.hniu.service.BookService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -47,6 +48,7 @@ public class BookController extends Base {
      * @param books
      * @return
      */
+    @RequiresPermissions("book:insert")
 	@PostMapping(value="/books")
 	public Object insert(Books books, String barCode) {
 		if(bookService.insertBook(books,barCode)>0) {
@@ -76,6 +78,7 @@ public class BookController extends Base {
      * @param books
      * @return
 	 */
+	@RequiresPermissions("book:update")
 	@PutMapping(value="/books/{bookId}")
 	public Object updateByPrimaryKey(Books books) {
 		if(bookService.updateBookById(books)>0) {
@@ -162,6 +165,7 @@ public class BookController extends Base {
 	 * @param barCode
 	 * @return
 	 */
+	@RequiresPermissions("book:delete")
 	@DeleteMapping("books/{barCode}")
 	public Object deleteByCode(@PathVariable String barCode) {
 		int flag = bookService.deleteByCode(barCode);
