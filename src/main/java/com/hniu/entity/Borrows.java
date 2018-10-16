@@ -5,8 +5,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Table(name = "tbl_borrows")
@@ -58,8 +56,6 @@ public class Borrows {
      * 罚款金额
      */
     private Float fine;
-
-
 
 
     /**
