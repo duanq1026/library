@@ -105,6 +105,10 @@ public class BorrowsController extends Base {
 
     @PostMapping("/borrows")
     public Object AddBorrows(Borrows borrows){
+        BookStates states = bookStatesMapper.selectByPrimaryKey(borrows.getBookStateId());
+        if (states.getState() == 1){
+            return packaging(StateCode.FAIL,"borrowFail");
+        }
         ReaderVo readerVo = readerService.selectByPrimaryKey(borrows.getReaderId());
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
