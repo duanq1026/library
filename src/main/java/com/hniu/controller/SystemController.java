@@ -3,6 +3,7 @@ package com.hniu.controller;
 import com.hniu.constan.StateCode;
 import com.hniu.entity.System;
 import com.hniu.service.SystemService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ public class SystemController extends Base {
     }
 
     @PutMapping("/system/{id}")
+    @RequiresPermissions(value = {"system:update"})
     public Object updateByPrimaryKey(System record, @PathVariable("id") Integer id){
         record.setSysId(id);
         if (systemService.updateByPrimaryKey(record) == 0){
