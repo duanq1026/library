@@ -70,4 +70,9 @@ public class BorrowsServiceImpl implements BorrowsService {
     public int GetBorrowNumByReaderCode(String readerCode) {
         return borrowsMapper.GetBorrowNumByReaderCode(readerCode);
     }
+
+    @Override
+    public Borrows selectByBorrowsid(Integer borrows_id) {
+        return borrowsMapper.selectByBorrowsid(borrows_id);
+    }
 }
