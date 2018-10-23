@@ -106,7 +106,7 @@ public class ReaderController extends Base {
      * @param reader
      * @return
      */
-    @RequiresPermissions("reader:update")
+    //@RequiresPermissions("reader:update")
 	@PutMapping(value="/readers/{reaedrId}")
 	public Object updateByPrimaryKey(Readers reader) {
 		if(readerService.updateByPrimaryKey(reader)>0) {
