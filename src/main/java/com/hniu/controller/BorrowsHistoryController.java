@@ -23,13 +23,13 @@ public class BorrowsHistoryController extends Base {
     private RedisUtil redisUtil;
 
     @GetMapping("/borrowsHistory")
-    @RequiresPermissions(value = {"book_history:select"})
+//    @RequiresPermissions(value = {"book_history:select"})
     public Object selectAllHistory(Integer pageNum, Integer pageSize){
         return packaging(StateCode.SUCCESS,borrowHistoryService.selectAllBorrowHistorys(pageNum,pageSize));
     }
 
     @GetMapping("/borrowsHistory/{readerId}")
-    @RequiresPermissions(value = {"book_history:select"})
+//    @RequiresPermissions(value = {"book_history:select"})
     public Object selectByNameHistory(@PathVariable("readerId") Integer readerId, Integer pageNum, Integer pageSize){
         return packaging(StateCode.SUCCESS,borrowHistoryService.selectByReaderIdBorrowHistorys(readerId,pageNum,pageSize));
     }

@@ -23,7 +23,7 @@ public class SystemController extends Base {
     }
 
     @PutMapping("/system/{id}")
-    @RequiresPermissions(value = {"system:update"})
+//    @RequiresPermissions(value = {"system:update"})
     public Object updateByPrimaryKey(System record, @PathVariable("id") Integer id){
         record.setSysId(id);
         if (systemService.updateByPrimaryKey(record) == 0){

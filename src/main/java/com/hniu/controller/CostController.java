@@ -18,14 +18,14 @@ public class CostController extends Base {
     private RedisUtil redisUtil;
 
     @GetMapping("/cost")
-    @RequiresPermissions(value = {"cost:select"})
+//    @RequiresPermissions(value = {"cost:select"})
     public Object selectAllCost(Integer pageNum, Integer pageSize){
         PageWrap data = costService.selectAllCost(pageNum,pageSize);
         return packaging(StateCode.SUCCESS,data);
     }
 
     @GetMapping("/cost/{readerId}")
-    @RequiresPermissions(value = {"cost:select"})
+//    @RequiresPermissions(value = {"cost:select"})
     public Object selectByReaderId(@PathVariable("readerId") Integer readerId, Integer pageNum, Integer pageSize){
         PageWrap data = costService.selectByIdCost(readerId,pageNum,pageSize);
         return packaging(StateCode.SUCCESS,data);
@@ -46,7 +46,7 @@ public class CostController extends Base {
     }
 
     @PostMapping("/cost")
-    @RequiresPermissions(value = {"cost:insert"})
+//    @RequiresPermissions(value = {"cost:insert"})
     public Object AddOneCost(Cost cost){
         int i = costService.AddOneCost(cost);
         if(i == 0){
