@@ -125,4 +125,8 @@
       where re.reader_id = b.reader_id and re.reader_code = #{readerCode,jdbcType=VARCHAR}
     </select>
 
+  <select id="selectByBorrowsid" parameterType="Integer" resultMap="BaseResultMap">
+      SELECT * FROM tbl_borrows WHERE borrow_id = #{borrowId,jdbcType=INTEGER}
+  </select>
+
 </mapper>
