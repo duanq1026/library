@@ -48,7 +48,7 @@ public class BookController extends Base {
      * @param books
      * @return
      */
-    @RequiresPermissions("book:insert")
+    //@RequiresPermissions("book:insert")
 	@PostMapping(value="/books")
 	public Object insert(Books books, String barCode) {
 		if(bookService.insertBook(books,barCode)>0) {
@@ -78,7 +78,7 @@ public class BookController extends Base {
      * @param books
      * @return
 	 */
-	@RequiresPermissions("book:update")
+	//@RequiresPermissions("book:update")
 	@PutMapping(value="/books/{bookId}")
 	public Object updateByPrimaryKey(Books books) {
 		if(bookService.updateBookById(books)>0) {
@@ -165,7 +165,7 @@ public class BookController extends Base {
 	 * @param barCode
 	 * @return
 	 */
-	@RequiresPermissions("book:delete")
+	//@RequiresPermissions("book:delete")
 	@DeleteMapping("books/{barCode}")
 	public Object deleteByCode(@PathVariable String barCode) {
 		int flag = bookService.deleteByCode(barCode);
