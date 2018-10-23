@@ -37,7 +37,7 @@ public class BookTypesController extends Base {
 	}
 
 	// 修改图书类型信息
-	@RequiresPermissions("book_type:update")
+	//@RequiresPermissions("book_type:update")
 	@PutMapping("/book_type/{bookTypeId}")
 	public Object updateBookType(BookTypes bookTypes) {
 
@@ -48,7 +48,7 @@ public class BookTypesController extends Base {
 	}
 
 	// 新增图书类型
-	@RequiresPermissions("book_type:insert")
+	//@RequiresPermissions("book_type:insert")
 	@PostMapping("/book_type")
 	public Object insertBookType(BookTypes bookTypes) {
         if(bookTypeService.insert(bookTypes) > 0){
@@ -58,7 +58,7 @@ public class BookTypesController extends Base {
 	}
 
 	// 删除角色
-	@RequiresPermissions("book_type:delete")
+	//@RequiresPermissions("book_type:delete")
 	@DeleteMapping("/book_type/{bookTypeId}")
 	public Object deleteBookType(@PathVariable Integer bookTypeId) {
         if(bookTypeService.deleteByPrimaryKey(bookTypeId) > 0){
