@@ -156,8 +156,9 @@ public class BorrowsController extends Base {
 
     @DeleteMapping("/borrows/{id}")
 //    @RequiresPermissions(value = {"book:return"})
-    public Object DelteBorrows(Borrows borrow,Cost costs){
+    public Object DelteBorrows(Borrows borrow,Cost costs,@PathVariable("id") Integer id){
         int i = 0;
+        borrow.setBorrowId(id);
         Borrows borrows = borrowsService.selectByBorrowsid(borrow.getBorrowId());
         if (borrows.getOverdue() == true){
             Cost cost = new Cost();
