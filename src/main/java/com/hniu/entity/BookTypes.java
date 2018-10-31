@@ -102,4 +102,14 @@ public class BookTypes {
     public void setClassNumber(String classNumber) {
         this.classNumber = classNumber;
     }
+
+    @Override
+    public String toString() {
+        return "BookTypes{" +
+                "bookTypeId=" + bookTypeId +
+                ", bookTypeName='" + bookTypeName + '\'' +
+                ", fatherNode='" + fatherNode + '\'' +
+                ", classNumber='" + classNumber + '\'' +
+                '}';
+    }
 }

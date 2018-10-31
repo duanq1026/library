@@ -1,5 +1,7 @@
 package com.hniu.entity;
 
+import com.hniu.constan.Operation;
+
 import java.util.Date;
 import javax.persistence.*;
 
@@ -9,6 +11,7 @@ public class Logs {
      * 日志id
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     /**
@@ -39,6 +42,17 @@ public class Logs {
      */
     @Column(name = "ope_detail")
     private String opeDetail;
+
+
+    public Logs(Integer adminId, Operation opeAction, Operation opeEntity, String opeDetail) {
+        this.adminId = adminId;
+        this.opeAction = opeAction.toString();
+        this.opeEntity = opeEntity.toString();
+        this.opeDetail = opeDetail;
+    }
+
+    public Logs() {
+    }
 
     /**
      * 获取日志id
