@@ -1,12 +1,16 @@
 package com.hniu.controller;
 
+import com.hniu.constan.Operation;
 import com.hniu.constan.StateCode;
+import com.hniu.entity.Admin;
 import com.hniu.entity.BookTypes;
+import com.hniu.entity.Logs;
 import com.hniu.service.BookTypeService;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+import com.hniu.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -16,7 +20,10 @@ public class BookTypesController extends Base {
 	@Autowired
 	private BookTypeService bookTypeService;
 
-	// 查询所有图书类型
+	@Autowired
+	private LogService logService;
+
+	// 查询所有角色
 	@GetMapping("/book_type")
 	public Object selectAll() {
 		List<BookTypes> list= bookTypeService.selectAll();
@@ -39,9 +46,13 @@ public class BookTypesController extends Base {
 	// 修改图书类型信息
 	//@RequiresPermissions("book_type:update")
 	@PutMapping("/book_type/{bookTypeId}")
-	public Object updateBookType(BookTypes bookTypes) {
-
+	public Object updateBookType(BookTypes bookTypes,HttpSession session) {
+		Admin currentAdmin = (Admin) session.getAttribute("admin");
+		if(currentAdmin == null){
+			return packaging(StateCode.LOGINAGAIN,null);
+		}
         if(bookTypeService.updateByPrimaryKey(bookTypes) > 0){
+			logService.addLog(new Logs( currentAdmin.getAdminId(), Operation.UPD,Operation.BOOK ,bookTypes.toString()));
             return packaging(StateCode.SUCCESS,bookTypes);
         }
         return packaging(StateCode.FAIL,null);
@@ -50,8 +61,13 @@ public class BookTypesController extends Base {
 	// 新增图书类型
 	//@RequiresPermissions("book_type:insert")
 	@PostMapping("/book_type")
-	public Object insertBookType(BookTypes bookTypes) {
+	public Object insertBookType(BookTypes bookTypes,HttpSession session) {
+		Admin currentAdmin = (Admin) session.getAttribute("admin");
+		if(currentAdmin == null){
+			return packaging(StateCode.LOGINAGAIN,null);
+		}
         if(bookTypeService.insert(bookTypes) > 0){
+			logService.addLog(new Logs( currentAdmin.getAdminId(), Operation.ADD,Operation.BOOK ,bookTypes.toString()));
             return packaging(StateCode.SUCCESS,bookTypes);
         }
         return packaging(StateCode.FAIL,null);
@@ -60,8 +76,13 @@ public class BookTypesController extends Base {
 	// 删除角色
 	//@RequiresPermissions("book_type:delete")
 	@DeleteMapping("/book_type/{bookTypeId}")
-	public Object deleteBookType(@PathVariable Integer bookTypeId) {
+	public Object deleteBookType(@PathVariable Integer bookTypeId,HttpSession session) {
+		Admin currentAdmin = (Admin) session.getAttribute("admin");
+		if(currentAdmin == null){
+			return packaging(StateCode.LOGINAGAIN,null);
+		}
         if(bookTypeService.deleteByPrimaryKey(bookTypeId) > 0){
+			logService.addLog(new Logs( currentAdmin.getAdminId(), Operation.DEL,Operation.BOOK ,bookTypeId.toString()));
             return packaging(StateCode.SUCCESS,bookTypeId);
         }
         return packaging(StateCode.FAIL,null);

@@ -27,7 +27,7 @@ public class Roles {
     /**
      * 权限ids字符串
      */
-    @Pattern(regexp = "(^\\d{1,}(,\\d{1,}){1,}$)|^(\\d+)$",message = "格式不匹配，数字数字之间以','分割")
+    @Pattern(regexp = "(^\\d{1,}(,\\d{1,}){1,}$)|^(\\d+)$", message = "格式不匹配，数字数字之间以','分割")
     @Column(name = "permissions_str")
     private String permissionsStr;
 
@@ -101,5 +101,15 @@ public class Roles {
      */
     public void setPermissionsStr(String permissionsStr) {
         this.permissionsStr = permissionsStr;
+    }
+
+    @Override
+    public String toString() {
+        return "Roles{" +
+                "roleId=" + roleId +
+                ", roleName='" + roleName + '\'' +
+                ", state=" + state +
+                ", permissionsStr='" + permissionsStr + '\'' +
+                '}';
     }
 }

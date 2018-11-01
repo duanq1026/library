@@ -1,7 +1,6 @@
 package com.hniu.config;
 
 import com.hniu.realm.LoginRealm;
-import com.hniu.realm.WechatRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
@@ -63,11 +62,6 @@ public class ShiroConfig {
         return loginRealm;
     }
 
-    @Bean
-    public Realm wxrealm() {
-        WechatRealm loginRealm = new WechatRealm();
-        return loginRealm;
-    }
 
 //    @Bean
 //    public DefaultWebSecurityManager  securityManager() {

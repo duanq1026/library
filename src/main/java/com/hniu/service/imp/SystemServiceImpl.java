@@ -22,6 +22,6 @@ public class SystemServiceImpl implements SystemService {
 
     @Override
     public int updateByPrimaryKey(System record) {
-        return systemMapper.updateByPrimaryKey(record);
+        return systemMapper.updateByPrimaryKeySelective(record);
     }
 }

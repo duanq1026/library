@@ -342,4 +342,25 @@ public class Books {
     public void setDirectory(String directory) {
         this.directory = directory;
     }
+
+    @Override
+    public String toString() {
+        return "Books{" +
+                "bookId=" + bookId +
+                ", bookTypeName='" + bookTypeName + '\'' +
+                ", bookName='" + bookName + '\'' +
+                ", imgPath='" + imgPath + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", author='" + author + '\'' +
+                ", press='" + press + '\'' +
+                ", price='" + price + '\'' +
+                ", publicationTime='" + publicationTime + '\'' +
+                ", pageNumber=" + pageNumber +
+                ", number=" + number +
+                ", createTime='" + createTime + '\'' +
+                ", classNumber='" + classNumber + '\'' +
+                ", introduction='" + introduction + '\'' +
+                ", directory='" + directory + '\'' +
+                '}';
+    }
 }

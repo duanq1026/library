@@ -3,11 +3,13 @@ package com.hniu;
 import com.github.pagehelper.PageHelper;
 import com.hniu.entity.Admin;
 import com.hniu.entity.BookTypes;
+import com.hniu.entity.Borrows;
 import com.hniu.entity.vo.AdminVo;
 import com.hniu.entity.vo.PermissionsVo;
 import com.hniu.exception.SystemErrorException;
 import com.hniu.mapper.AdminMapper;
 import com.hniu.mapper.PermissionsMapper;
+import com.hniu.service.BorrowsService;
 import com.hniu.service.WxLoginService;
 import com.hniu.service.imp.BookTypeServiceImpl;
 import com.hniu.util.RedisUtil;
@@ -29,6 +31,9 @@ public class LibraryApplicationTests {
 
     @Autowired
     WxLoginService wx;
+
+    @Autowired
+    BorrowsService borrowsService;
     @Test
     public void hello(){
         try {
@@ -36,5 +41,11 @@ public class LibraryApplicationTests {
         } catch (SystemErrorException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void aa(){
+        Borrows borrows = borrowsService.selectByBorrowsid(46);
+        System.out.println(borrows.getOverdue());
     }
 }
