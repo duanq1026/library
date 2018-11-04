@@ -23,7 +23,7 @@ public class BookTypesController extends Base {
 	@Autowired
 	private LogService logService;
 
-	// 查询所有角色
+	// 查询所有图书类型
 	@GetMapping("/book_type")
 	public Object selectAll() {
 		List<BookTypes> list= bookTypeService.selectAll();

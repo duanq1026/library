@@ -36,4 +36,6 @@ public interface ReadersMapper{
 	String selectRcode();
 
 	ReaderVo selectBorrowBooks(String readerCode);
+	
+	int updateType(Readers reader);
 }
