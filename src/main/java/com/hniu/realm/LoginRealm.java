@@ -66,6 +66,7 @@ public class LoginRealm extends AuthorizingRealm {
         }
         session = SecurityUtils.getSubject().getSession();
         session.setAttribute("admin", admin);
+        System.out.println(session.getId());
         //加盐
         ByteSource bs = ByteSource.Util.bytes(admin.getSalt());
         SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(uptoken.getPrincipal(), admin.getPassword(), bs,

@@ -31,6 +31,7 @@ com\hniu\entity\System.class
 com\hniu\service\imp\BookServiceImpl.class
 com\hniu\service\imp\CostServiceImpl.class
 com\hniu\entity\wrap\PageWrap.class
+com\hniu\constan\Operation.class
 com\hniu\controller\CostController.class
 com\hniu\entity\vo\PageVo.class
 com\hniu\service\imp\ReaderTypeServiceImpl.class
@@ -42,6 +43,7 @@ com\hniu\mapper\BorrowsMapper.class
 com\hniu\controller\RoleController.class
 com\hniu\entity\vo\BorrowHistorysVo.class
 com\hniu\constan\StateCode.class
+com\hniu\controller\LogController.class
 com\hniu\entity\Readers.class
 com\hniu\service\SearchBookVoService.class
 com\hniu\controller\BorrowsHistoryController.class
@@ -52,7 +54,6 @@ com\hniu\entity\vo\Menu.class
 com\hniu\LibraryApplication.class
 com\hniu\util\UUIDUtils.class
 com\hniu\controller\BorrowsController.class
-com\hniu\realm\WechatRealm.class
 com\hniu\controller\LoginController.class
 com\hniu\mapper\AdminMapper.class
 com\hniu\service\BookStateService.class
@@ -68,14 +69,15 @@ com\hniu\controller\ReaderTypesController.class
 com\hniu\exception\PassWordIsNullException.class
 com\hniu\realm\LoginRealm.class
 com\hniu\mapper\ReaderTypesMapper.class
+com\hniu\service\imp\LogServiceImpl.class
 com\hniu\entity\vo\PermissionsVo.class
 com\hniu\controller\Base.class
 com\hniu\mapper\PermissionsMapper.class
 com\hniu\entity\vo\BookVo.class
-com\hniu\util\FileNameUtils.class
 com\hniu\service\imp\CirculateServiceImpl.class
 com\hniu\entity\BorrowHistorys.class
 com\hniu\mapper\SearchMapper.class
+com\hniu\service\LogService.class
 com\hniu\exception\UserNameIsNullException.class
 com\hniu\entity\Cost.class
 com\hniu\service\ReaderService.class

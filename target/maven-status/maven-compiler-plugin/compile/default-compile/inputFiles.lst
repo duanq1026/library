@@ -11,9 +11,7 @@ C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\service\imp\SearchBoo
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\service\BookStateService.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\service\imp\BookTypeServiceImpl.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\service\SearchBookVoService.java
-C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\util\FileNameUtils.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\controller\BookTypesController.java
-C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\realm\WechatRealm.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\realm\LoginRealm.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\entity\wrap\PageWrap.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\service\ReaderService.java
@@ -27,6 +25,7 @@ C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\controller\FileContor
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\mapper\ReadersMapper.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\service\SystemService.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\exception\PassWordIsNullException.java
+C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\constan\Operation.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\entity\Cost.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\entity\Logs.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\entity\System.java
@@ -37,6 +36,7 @@ C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\entity\vo\Permissions
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\exception\PassWordErrorException.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\service\imp\RoleServiceImpl.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\mapper\BookStatesMapper.java
+C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\service\imp\LogServiceImpl.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\service\imp\CirculateServiceImpl.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\controller\ReaderTypesController.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\controller\BookController.java
@@ -66,6 +66,7 @@ C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\controller\AdminContr
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\service\imp\SearchServiceImpl.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\exception\NotLoginException.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\exception\UserNameIsNullException.java
+C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\service\LogService.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\service\AdminService.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\service\imp\AdminServiceImpl.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\config\DruidConfig.java
@@ -81,6 +82,7 @@ C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\util\RedisUtil.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\mapper\SearchMapper.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\entity\vo\CostVo.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\service\BorrowsService.java
+C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\controller\LogController.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\entity\vo\ReaderVo.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\service\imp\ReaderServiceImpl.java
 C:\Users\C\Documents\GitHub\library\src\main\java\com\hniu\controllerAdvice\ExceptionAdvice.java

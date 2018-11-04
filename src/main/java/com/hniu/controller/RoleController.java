@@ -43,7 +43,7 @@ public class RoleController extends Base {
         }
         role.setRoleId(roleId);
         rs.updateByPrimaryKey(role);
-        logService.addLog(new Logs( currentAdmin.getAdminId(), Operation.UPD,Operation.BOOK ,role.toString()));
+        logService.addLog(new Logs( currentAdmin.getAdminId(), Operation.UPD,Operation.ROLE ,role.toString()));
         return packaging(StateCode.SUCCESS, role);
     }
 
@@ -55,7 +55,7 @@ public class RoleController extends Base {
             return packaging(StateCode.LOGINAGAIN,null);
         }
         rs.insertRole(role);
-        logService.addLog(new Logs( currentAdmin.getAdminId(), Operation.ADD,Operation.BOOK ,role.toString()));
+        logService.addLog(new Logs( currentAdmin.getAdminId(), Operation.ADD,Operation.ROLE ,role.toString()));
         return packaging(StateCode.SUCCESS,role );
     }
 
@@ -67,7 +67,7 @@ public class RoleController extends Base {
             return packaging(StateCode.LOGINAGAIN,null);
         }
         rs.deleteRole(roleId);
-        logService.addLog(new Logs( currentAdmin.getAdminId(), Operation.DEL,Operation.BOOK ,roleId.toString()));
+        logService.addLog(new Logs( currentAdmin.getAdminId(), Operation.DEL,Operation.ROLE ,roleId.toString()));
         return packaging(StateCode.SUCCESS, null);
     }
 }
