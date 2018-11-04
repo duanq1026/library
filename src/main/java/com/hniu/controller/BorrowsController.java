@@ -110,7 +110,7 @@ public class BorrowsController extends Base {
     }
 
     @PostMapping("/borrows")
-    @RequiresPermissions(value = {"book:borrow"})
+//    @RequiresPermissions(value = {"book:borrow"})
     public Object AddBorrows(Borrows borrows){
         BookStates states = bookStatesMapper.selectByPrimaryKey(borrows.getBookStateId());
         if (states.getState() == 1){
@@ -155,9 +155,10 @@ public class BorrowsController extends Base {
     }
 
     @DeleteMapping("/borrows/{id}")
-    @RequiresPermissions(value = {"book:return"})
-    public Object DelteBorrows(Borrows borrow,Cost costs){
+//    @RequiresPermissions(value = {"book:return"})
+    public Object DelteBorrows(Borrows borrow,Cost costs,@PathVariable("id") Integer id){
         int i = 0;
+        borrow.setBorrowId(id);
         Borrows borrows = borrowsService.selectByBorrowsid(borrow.getBorrowId());
         if (borrows.getOverdue() == true){
             Cost cost = new Cost();

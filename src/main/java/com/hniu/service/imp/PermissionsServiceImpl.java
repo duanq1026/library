@@ -45,7 +45,7 @@ public class PermissionsServiceImpl implements PermissionsService {
         List<Permissions> permissions = selectPermissions(admin.getRoleId());
         List<Menu> menus = new ArrayList<Menu>();
         for (Permissions p1 : permissions) {
-            if (p1.getFatherNode() == 0) {
+            if (p1.getFatherNode() == null || p1.getFatherNode() == 0) {
                 Menu menu = new Menu();
                 menu.setPermissions(p1);
                 for (Permissions p2 : permissions) {

@@ -2,8 +2,6 @@ package com.hniu;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
@@ -16,7 +14,7 @@ public class LibraryApplication {//extends SpringBootServletInitializer
 
 //    @Override
 //    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-//        return application.sources(LibraryApplication.class);
+//        return application.sourc-es(LibraryApplication.class);
 //    }
 
 }

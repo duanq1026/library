@@ -1,15 +1,21 @@
 package com.hniu.controller;
 
+import com.hniu.constan.Operation;
 import com.hniu.constan.StateCode;
+import com.hniu.entity.Admin;
 import com.hniu.entity.BookStates;
 import com.hniu.entity.Books;
+import com.hniu.entity.Logs;
 import com.hniu.entity.vo.BookVo;
 import com.hniu.entity.vo.PageVo;
+import com.hniu.exception.NotLoginException;
 import com.hniu.service.BookService;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+import com.hniu.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * 
@@ -24,6 +30,9 @@ public class BookController extends Base {
 	
 	@Autowired
     private BookService bookService;
+
+	@Autowired
+	private LogService logService;
 	
 	/**
      * 
@@ -50,8 +59,13 @@ public class BookController extends Base {
      */
     //@RequiresPermissions("book:insert")
 	@PostMapping(value="/books")
-	public Object insert(Books books, String barCode) {
+	public Object insert(Books books, String barCode,HttpSession session) {
+		Admin currentAdmin = (Admin) session.getAttribute("admin");
+		if(currentAdmin == null){
+			return packaging(StateCode.LOGINAGAIN,null);
+		}
 		if(bookService.insertBook(books,barCode)>0) {
+			logService.addLog(new Logs( currentAdmin.getAdminId(), Operation.ADD,Operation.BOOK ,books.toString()));
 			return packaging(StateCode.SUCCESS,books);
 		}
 		return packaging(StateCode.FAIL,null);
@@ -80,8 +94,13 @@ public class BookController extends Base {
 	 */
 	//@RequiresPermissions("book:update")
 	@PutMapping(value="/books/{bookId}")
-	public Object updateByPrimaryKey(Books books) {
+	public Object updateByPrimaryKey(Books books,HttpSession session) {
+		Admin currentAdmin = (Admin) session.getAttribute("admin");
+		if(currentAdmin == null){
+			return packaging(StateCode.LOGINAGAIN,null);
+		}
 		if(bookService.updateBookById(books)>0) {
+			logService.addLog(new Logs( currentAdmin.getAdminId(), Operation.UPD,Operation.BOOK ,books.toString()));
 			return packaging(StateCode.SUCCESS,books);
 		}
 		return packaging(StateCode.FAIL,null);

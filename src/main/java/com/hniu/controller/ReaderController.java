@@ -1,15 +1,20 @@
 package com.hniu.controller;
 
+import com.hniu.constan.Operation;
 import com.hniu.constan.StateCode;
+import com.hniu.entity.Admin;
+import com.hniu.entity.Logs;
 import com.hniu.entity.Readers;
 import com.hniu.entity.vo.PageVo;
 import com.hniu.entity.vo.ReaderVo;
+import com.hniu.service.LogService;
 import com.hniu.service.ReaderService;
 import com.hniu.util.RedisUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +33,8 @@ public class ReaderController extends Base {
     ReaderService readerService;
 	@Autowired
 	RedisUtil redisUtil;
+	@Autowired
+	LogService logService;
 	/**
      * 
      * Title: selectAll
@@ -50,8 +57,13 @@ public class ReaderController extends Base {
 	 * @return
 	 */
 	@DeleteMapping(value="/readers/{rId}")
-	public Object deleteByPrimaryKey(@PathVariable Integer rId) {
+	public Object deleteByPrimaryKey(@PathVariable Integer rId,HttpSession session) {
+		Admin currentAdmin = (Admin) session.getAttribute("admin");
+		if(currentAdmin == null){
+			return packaging(StateCode.LOGINAGAIN,null);
+		}
 		if(readerService.deleteByPrimaryKey(rId)>0) {
+			logService.addLog(new Logs( currentAdmin.getAdminId(), Operation.DEL,Operation.BOOK ,rId.toString()));
 			return packaging(StateCode.SUCCESS,null);
 		}
 		return packaging(StateCode.FAIL,null);
@@ -64,8 +76,13 @@ public class ReaderController extends Base {
      * @return
      */
 	@PostMapping(value="/readers")
-	public Object insert(Readers reader) {
+	public Object insert(Readers reader,HttpSession session) {
+		Admin currentAdmin = (Admin) session.getAttribute("admin");
+		if(currentAdmin == null){
+			return packaging(StateCode.LOGINAGAIN,null);
+		}
 		if(readerService.insert(reader)!=null) {
+			logService.addLog(new Logs( currentAdmin.getAdminId(), Operation.ADD,Operation.BOOK ,reader.toString()));
 			return packaging(StateCode.SUCCESS,reader);
 		}
 		return packaging(StateCode.FAIL,null);
