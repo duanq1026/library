@@ -3,86 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fcedc3ef-5410-47d5-8cef-1398fb77e7e1" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hniu/constan/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hniu/constan/Operation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hniu/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hniu/controller/BookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hniu/controller/BookTypesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hniu/controller/BookTypesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hniu/controller/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hniu/controller/RoleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hniu/controller/SystemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hniu/controller/SystemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hniu/realm/LoginRealm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hniu/realm/LoginRealm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/constan/Operation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/constan/Operation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/constan/StateCode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/constan/StateCode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/controller/Base.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/controller/Base.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/controller/BookTypesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/controller/BookTypesController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/controller/PermissionsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/controller/PermissionsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/controller/ReaderTypesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/controller/ReaderTypesController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/controller/RoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/controller/RoleController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/controller/SearchController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/controller/SearchController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/controller/SystemController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/controller/SystemController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/controllerAdvice/ExceptionAdvice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/controllerAdvice/ExceptionAdvice.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/entity/BookStates.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/entity/BookStates.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/entity/Borrows.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/entity/Borrows.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/entity/Cost.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/entity/Cost.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/entity/Permissions.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/entity/Permissions.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/entity/ReaderTypes.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/entity/ReaderTypes.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/entity/Readers.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/entity/Readers.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/entity/vo/AdminVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/entity/vo/AdminVo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/entity/vo/BookTypeMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/entity/vo/BookTypeMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/entity/vo/BookVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/entity/vo/BookVo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/entity/vo/CostVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/entity/vo/CostVo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/entity/vo/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/entity/vo/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/entity/vo/PageVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/entity/vo/PageVo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/entity/vo/PermissionsVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/entity/vo/PermissionsVo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/entity/vo/ReaderVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/entity/vo/ReaderVo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/entity/vo/RolesVo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/entity/vo/RolesVo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/entity/wrap/PageWrap.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/entity/wrap/PageWrap.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/entity/wrap/State.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/entity/wrap/State.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/exception/NotLoginException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/exception/NotLoginException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/exception/PassWordErrorException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/exception/PassWordErrorException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/exception/PassWordIsNullException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/exception/PassWordIsNullException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/exception/SystemErrorException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/exception/SystemErrorException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/exception/UserNameExistException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/exception/UserNameExistException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/exception/UserNameIsNullException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/exception/UserNameIsNullException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/mapper/AdminMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/mapper/AdminMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/mapper/BookStatesMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/mapper/BookStatesMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/mapper/BookTypesMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/mapper/BookTypesMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/mapper/BooksMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/mapper/BooksMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/mapper/BorrowHistorysMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/mapper/BorrowHistorysMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/mapper/BorrowsMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/mapper/BorrowsMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/mapper/CostMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/mapper/CostMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/mapper/ReaderTypesMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/mapper/ReaderTypesMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/mapper/ReadersMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/mapper/ReadersMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/mapper/RolesMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/mapper/RolesMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/mapper/SystemMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/mapper/SystemMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/realm/LoginRealm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/realm/LoginRealm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/service/AdminService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/service/AdminService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/service/BookService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/service/BookService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/service/BookTypeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/service/BookTypeService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/service/BorrowHistoryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/service/BorrowHistoryService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/service/BorrowsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/service/BorrowsService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/service/CostService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/service/CostService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/service/ReaderTypeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/service/ReaderTypeService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/service/RoleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/service/RoleService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/service/SearchService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/service/SearchService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/service/SystemService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/service/SystemService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/service/imp/AdminServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/service/imp/AdminServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/service/imp/BookServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/service/imp/BookServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/service/imp/BookTypeServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/service/imp/BookTypeServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/service/imp/BorrowHistoryServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/service/imp/BorrowHistoryServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/service/imp/BorrowsServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/service/imp/BorrowsServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/service/imp/CostServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/service/imp/CostServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/service/imp/ReaderTypeServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/service/imp/ReaderTypeServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/service/imp/RoleServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/service/imp/RoleServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/util/EncryptUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/util/EncryptUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/hniu/util/RedisUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hniu/util/RedisUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/library-1.1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/library-1.1.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/library-1.1.0.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/library-1.1.0.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/2018-10-02T22-43-08_829-jvmRun1.dump" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.hniu.LibraryApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.hniu.LibraryApplicationTests.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.hniu.LibraryApplicationTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.hniu.LibraryApplicationTests.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -124,16 +45,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BookController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BookController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/hniu/controller/BookController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1071">
-              <caret line="66" column="116" selection-start-line="66" selection-start-column="116" selection-end-line="66" selection-end-column="116" />
+            <state relative-caret-position="336">
+              <caret line="100" column="116" selection-start-line="100" selection-start-column="116" selection-end-line="100" selection-end-column="116" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BorrowsController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BorrowsController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/hniu/controller/BorrowsController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="378">
@@ -283,7 +204,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="496" />
     <option name="y" value="17" />
     <option name="width" value="1400" />
@@ -608,7 +529,7 @@
       <workItem from="1541215495379" duration="488000" />
       <workItem from="1541216612906" duration="226000" />
       <workItem from="1541243205976" duration="1297000" />
-      <workItem from="1541318895964" duration="748000" />
+      <workItem from="1541318895964" duration="852000" />
     </task>
     <task id="LOCAL-00001" summary="整合redis">
       <created>1538042075529</created>
@@ -653,7 +574,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61733000" />
+    <option name="totallyTimeSpent" value="61837000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -665,7 +586,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50298506" side_tool="true" weight="0.3031359" />
@@ -1083,17 +1005,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/hniu/controller/BookController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="66" column="116" selection-start-line="66" selection-start-column="116" selection-end-line="66" selection-end-column="116" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/hniu/controller/BorrowsController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="137" column="50" selection-start-line="137" selection-start-column="50" selection-end-line="137" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/hniu/controller/BookController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="100" column="116" selection-start-line="100" selection-start-column="116" selection-end-line="100" selection-end-column="116" />
         </state>
       </provider>
     </entry>

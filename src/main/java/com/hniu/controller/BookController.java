@@ -98,7 +98,7 @@ public class BookController extends Base {
 			return packaging(StateCode.LOGINAGAIN,null);
 		}
 		if(bookService.updateBookById(books)>0) {
-			logService.addLog(new Logs( currentAdmin.getAdminId(), Operation.UPD,Operation.BOOK ,books.toString()));
+			logService.addLog(new Logs( currentAdmin.getAdminId(), Operation.UPD,Operation.BOOK ,books.getBookName()));
 			return packaging(StateCode.SUCCESS,books);
 		}
 		return packaging(StateCode.FAIL,null);
