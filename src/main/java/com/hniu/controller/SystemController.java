@@ -37,7 +37,7 @@ public class SystemController extends Base {
         }
         record.setSysId(id);
         if (systemService.updateByPrimaryKey(record) == 0) {
-            logService.addLog(new Logs(currentAdmin.getAdminId(), Operation.UPD, Operation.BOOK, record.toString()));
+            logService.addLog(new Logs(currentAdmin.getAdminId(), Operation.UPD, Operation.SYSTEM, record.toString()));
             return packaging(StateCode.FAIL, record);
         }
         return packaging(StateCode.SUCCESS, record);

@@ -13,7 +13,8 @@ public enum Operation {
     RETURN("还书"),
     READER("读者"),
     READER_TYPE("读者类别"),
-    ROLE("角色");
+    ROLE("角色"),
+    SYSTEM("系统设置");
 
 
     private String val;

@@ -7,6 +7,8 @@ import com.hniu.entity.BookTypes;
 import com.hniu.entity.Logs;
 import com.hniu.service.BookTypeService;
 import com.hniu.service.LogService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,7 +54,7 @@ public class BookTypesController extends Base {
 			return packaging(StateCode.LOGINAGAIN,null);
 		}
         if(bookTypeService.updateByPrimaryKey(bookTypes) > 0){
-			logService.addLog(new Logs( currentAdmin.getAdminId(), Operation.UPD,Operation.BOOK ,bookTypes.toString()));
+			logService.addLog(new Logs( currentAdmin.getAdminId(), Operation.UPD,Operation.BOOK_TYPE ,bookTypes.toString()));
             return packaging(StateCode.SUCCESS,bookTypes);
         }
         return packaging(StateCode.FAIL,null);
@@ -61,13 +63,15 @@ public class BookTypesController extends Base {
 	// 新增图书类型
 	//@RequiresPermissions("book_type:insert")
 	@PostMapping("/book_type")
-	public Object insertBookType(BookTypes bookTypes,HttpSession session) {
+	public Object insertBookType(BookTypes bookTypes) {
+		Session session = SecurityUtils.getSubject().getSession();
+		System.out.println(session.getId());
 		Admin currentAdmin = (Admin) session.getAttribute("admin");
 		if(currentAdmin == null){
 			return packaging(StateCode.LOGINAGAIN,null);
 		}
         if(bookTypeService.insert(bookTypes) > 0){
-			logService.addLog(new Logs( currentAdmin.getAdminId(), Operation.ADD,Operation.BOOK ,bookTypes.toString()));
+			logService.addLog(new Logs( currentAdmin.getAdminId(), Operation.ADD,Operation.BOOK_TYPE ,bookTypes.toString()));
             return packaging(StateCode.SUCCESS,bookTypes);
         }
         return packaging(StateCode.FAIL,null);
@@ -82,7 +86,7 @@ public class BookTypesController extends Base {
 			return packaging(StateCode.LOGINAGAIN,null);
 		}
         if(bookTypeService.deleteByPrimaryKey(bookTypeId) > 0){
-			logService.addLog(new Logs( currentAdmin.getAdminId(), Operation.DEL,Operation.BOOK ,bookTypeId.toString()));
+			logService.addLog(new Logs( currentAdmin.getAdminId(), Operation.DEL,Operation.BOOK_TYPE ,bookTypeId.toString()));
             return packaging(StateCode.SUCCESS,bookTypeId);
         }
         return packaging(StateCode.FAIL,null);
