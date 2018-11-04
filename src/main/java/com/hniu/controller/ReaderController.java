@@ -124,9 +124,22 @@ public class ReaderController extends Base {
      * @return
      */
     //@RequiresPermissions("reader:update")
-	@PutMapping(value="/readers/{reaedrId}")
+	@PutMapping(value="/readers/{readerId}")
 	public Object updateByPrimaryKey(Readers reader) {
 		if(readerService.updateByPrimaryKey(reader)>0) {
+			return packaging(StateCode.SUCCESS,reader);
+		}
+		return packaging(StateCode.FAIL,null);
+	}
+
+	/**
+	 * 修改读者类型
+	 * @param reader
+	 * @return
+	 */
+	@PutMapping(value="/readers/type/{readerId}")
+	public Object updateType(Readers reader) {
+		if(readerService.updateType(reader)>0) {
 			return packaging(StateCode.SUCCESS,reader);
 		}
 		return packaging(StateCode.FAIL,null);

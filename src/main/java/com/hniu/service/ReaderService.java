@@ -112,4 +112,11 @@ public interface ReaderService {
      * @return
      */
     ReaderVo selectBorrowBooks(String readerCode);
+
+    /**
+     * 修改读者类型
+     * @param reader
+     * @return
+     */
+    int updateType(Readers reader);
 }

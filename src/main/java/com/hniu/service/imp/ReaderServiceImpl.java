@@ -155,5 +155,10 @@ public class ReaderServiceImpl implements ReaderService {
         }
     }
 
+    @Override
+    public int updateType(Readers reader) {
+        return readersMapper.updateType(reader);
+    }
+
 
 }
