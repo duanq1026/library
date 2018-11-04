@@ -57,6 +57,7 @@ public class BookController extends Base {
      * @param books
      * @return
      */
+    //@RequiresPermissions("book:insert")
 	@PostMapping(value="/books")
 	public Object insert(Books books, String barCode,HttpSession session) {
 		Admin currentAdmin = (Admin) session.getAttribute("admin");
@@ -91,6 +92,7 @@ public class BookController extends Base {
      * @param books
      * @return
 	 */
+	//@RequiresPermissions("book:update")
 	@PutMapping(value="/books/{bookId}")
 	public Object updateByPrimaryKey(Books books,HttpSession session) {
 		Admin currentAdmin = (Admin) session.getAttribute("admin");
@@ -173,6 +175,21 @@ public class BookController extends Base {
 		 BookStates bookStates = bookService.selectByCode(barCode);
 		if(bookStates!=null) {
 			return packaging(StateCode.SUCCESS,bookStates);
+		}
+		return packaging(StateCode.FAIL,null);
+	}
+
+	/**
+	 * 根据条码删除图书
+	 * @param barCode
+	 * @return
+	 */
+	//@RequiresPermissions("book:delete")
+	@DeleteMapping("books/{barCode}")
+	public Object deleteByCode(@PathVariable String barCode) {
+		int flag = bookService.deleteByCode(barCode);
+		if(flag>0) {
+			return packaging(StateCode.SUCCESS,"success");
 		}
 		return packaging(StateCode.FAIL,null);
 	}

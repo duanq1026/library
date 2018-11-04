@@ -10,6 +10,7 @@ import com.hniu.entity.vo.ReaderVo;
 import com.hniu.service.LogService;
 import com.hniu.service.ReaderService;
 import com.hniu.util.RedisUtil;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -122,9 +123,23 @@ public class ReaderController extends Base {
      * @param reader
      * @return
      */
-	@PutMapping(value="/readers/{reaedrId}")
+    //@RequiresPermissions("reader:update")
+	@PutMapping(value="/readers/{readerId}")
 	public Object updateByPrimaryKey(Readers reader) {
 		if(readerService.updateByPrimaryKey(reader)>0) {
+			return packaging(StateCode.SUCCESS,reader);
+		}
+		return packaging(StateCode.FAIL,null);
+	}
+
+	/**
+	 * 修改读者类型
+	 * @param reader
+	 * @return
+	 */
+	@PutMapping(value="/readers/type/{readerId}")
+	public Object updateType(Readers reader) {
+		if(readerService.updateType(reader)>0) {
 			return packaging(StateCode.SUCCESS,reader);
 		}
 		return packaging(StateCode.FAIL,null);

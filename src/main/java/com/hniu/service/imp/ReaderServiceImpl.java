@@ -82,6 +82,7 @@ public class ReaderServiceImpl implements ReaderService {
 		date = calendar.getTime();
 		record.setExpirationTime(date);
         record.setState((byte)1);
+        record.setSessionKey("0.00元");
         if(readersMapper.insert(record)>0){
             return record;
         }
@@ -152,6 +153,11 @@ public class ReaderServiceImpl implements ReaderService {
                 return null;
             }
         }
+    }
+
+    @Override
+    public int updateType(Readers reader) {
+        return readersMapper.updateType(reader);
     }
 
 

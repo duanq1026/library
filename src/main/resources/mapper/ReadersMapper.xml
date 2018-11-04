@@ -93,6 +93,11 @@
     </set>
     where reader_id = #{readerId,jdbcType=INTEGER}
   </update>
+    <update id="updateType" parameterType="com.hniu.entity.Readers">
+        update tbl_readers
+        set reader_type_id = #{readerTypeId}
+        where reader_id = #{readerId,jdbcType=INTEGER}
+    </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="VoResultMap">
       <include refid="commom"></include>
     where reader_id = #{readerId,jdbcType=INTEGER}

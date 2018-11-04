@@ -25,7 +25,7 @@ public class BookTypesController extends Base {
 	@Autowired
 	private LogService logService;
 
-	// 查询所有角色
+	// 查询所有图书类型
 	@GetMapping("/book_type")
 	public Object selectAll() {
 		List<BookTypes> list= bookTypeService.selectAll();
@@ -35,7 +35,7 @@ public class BookTypesController extends Base {
 		return packaging(StateCode.FAIL,list);
 	}
 
-	// 查询指定id的角色
+	// 查询指定id的图书类型
 	@GetMapping("/book_type/{bookTypeId}")
 	public Object selectBookType(@PathVariable Integer bookTypeId) {
 		BookTypes bookTypes= bookTypeService.selectByPrimaryKey(bookTypeId);
@@ -45,7 +45,8 @@ public class BookTypesController extends Base {
         return packaging(StateCode.FAIL,bookTypes);
 	}
 
-	// 修改角色信息
+	// 修改图书类型信息
+	//@RequiresPermissions("book_type:update")
 	@PutMapping("/book_type/{bookTypeId}")
 	public Object updateBookType(BookTypes bookTypes,HttpSession session) {
 		Admin currentAdmin = (Admin) session.getAttribute("admin");
@@ -59,7 +60,8 @@ public class BookTypesController extends Base {
         return packaging(StateCode.FAIL,null);
 	}
 
-	// 新增角色
+	// 新增图书类型
+	//@RequiresPermissions("book_type:insert")
 	@PostMapping("/book_type")
 	public Object insertBookType(BookTypes bookTypes) {
 		Session session = SecurityUtils.getSubject().getSession();
@@ -76,6 +78,7 @@ public class BookTypesController extends Base {
 	}
 
 	// 删除角色
+	//@RequiresPermissions("book_type:delete")
 	@DeleteMapping("/book_type/{bookTypeId}")
 	public Object deleteBookType(@PathVariable Integer bookTypeId,HttpSession session) {
 		Admin currentAdmin = (Admin) session.getAttribute("admin");

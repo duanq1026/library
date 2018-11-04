@@ -3,11 +3,14 @@ package com.hniu.controller;
 import com.hniu.constan.StateCode;
 import com.hniu.entity.BookStates;
 import com.hniu.entity.Borrows;
+import com.hniu.entity.Cost;
 import com.hniu.entity.vo.ReaderVo;
 import com.hniu.mapper.BookStatesMapper;
 import com.hniu.service.BorrowsService;
+import com.hniu.service.CostService;
 import com.hniu.service.ReaderService;
 import com.hniu.util.RedisUtil;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +29,9 @@ public class BorrowsController extends Base {
 
     @Autowired
     private BookStatesMapper bookStatesMapper;
+
+    @Autowired
+    private CostService costService;
 
     @Autowired
     private RedisUtil redisUtil;
@@ -104,7 +110,12 @@ public class BorrowsController extends Base {
     }
 
     @PostMapping("/borrows")
+//    @RequiresPermissions(value = {"book:borrow"})
     public Object AddBorrows(Borrows borrows){
+        BookStates states = bookStatesMapper.selectByPrimaryKey(borrows.getBookStateId());
+        if (states.getState() == 1){
+            return packaging(StateCode.FAIL,"borrowFail");
+        }
         ReaderVo readerVo = readerService.selectByPrimaryKey(borrows.getReaderId());
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
@@ -144,9 +155,20 @@ public class BorrowsController extends Base {
     }
 
     @DeleteMapping("/borrows/{id}")
-    public Object DelteBorrows(@PathVariable("id") Integer borrows_id){
+//    @RequiresPermissions(value = {"book:return"})
+    public Object DelteBorrows(Borrows borrow,Cost costs,@PathVariable("id") Integer id){
         int i = 0;
-        i = borrowsService.DelteBorrows(borrows_id);
+        borrow.setBorrowId(id);
+        Borrows borrows = borrowsService.selectByBorrowsid(borrow.getBorrowId());
+        if (borrows.getOverdue() == true){
+            Cost cost = new Cost();
+            cost.setReaderId(borrow.getReaderId());
+            cost.setCostType(costs.getCostType());
+            cost.setNumeric(borrows.getFine());
+            cost.setPayType(costs.getPayType());
+            costService.AddOneCost(cost);
+        }
+        i = borrowsService.DelteBorrows(borrow.getBorrowId());
         if (i!=0){
             return packaging(StateCode.SUCCESS,"Delete success");
         }

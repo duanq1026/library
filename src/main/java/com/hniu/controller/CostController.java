@@ -5,6 +5,7 @@ import com.hniu.entity.Cost;
 import com.hniu.entity.wrap.PageWrap;
 import com.hniu.service.CostService;
 import com.hniu.util.RedisUtil;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,12 +18,14 @@ public class CostController extends Base {
     private RedisUtil redisUtil;
 
     @GetMapping("/cost")
+//    @RequiresPermissions(value = {"cost:select"})
     public Object selectAllCost(Integer pageNum, Integer pageSize){
         PageWrap data = costService.selectAllCost(pageNum,pageSize);
         return packaging(StateCode.SUCCESS,data);
     }
 
     @GetMapping("/cost/{readerId}")
+//    @RequiresPermissions(value = {"cost:select"})
     public Object selectByReaderId(@PathVariable("readerId") Integer readerId, Integer pageNum, Integer pageSize){
         PageWrap data = costService.selectByIdCost(readerId,pageNum,pageSize);
         return packaging(StateCode.SUCCESS,data);
@@ -43,6 +46,7 @@ public class CostController extends Base {
     }
 
     @PostMapping("/cost")
+//    @RequiresPermissions(value = {"cost:insert"})
     public Object AddOneCost(Cost cost){
         int i = costService.AddOneCost(cost);
         if(i == 0){
@@ -53,25 +57,5 @@ public class CostController extends Base {
         }
         return packaging(StateCode.SUCCESS,cost);
     }
-
-    @DeleteMapping("/cost/{id}")
-    public Object DeleteOneCost(@PathVariable("id") Integer id){
-        int i = costService.DeleteOneCost(id);
-        if(i==0){
-            return packaging(StateCode.FAIL,null);
-        }
-        return packaging(StateCode.SUCCESS,null);
-    }
-
-    @PutMapping("/cost/{id}")
-    public Object UpdateOneCost(@PathVariable("id") Integer id, Cost cost){
-        cost.setCostId(id);
-        int i = costService.UpdateOneCost(cost);
-        if(i==0){
-            return packaging(StateCode.FAIL,null);
-        }
-        return packaging(StateCode.SUCCESS,null);
-    }
-
 
 }

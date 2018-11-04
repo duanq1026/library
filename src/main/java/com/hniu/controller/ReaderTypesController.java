@@ -3,6 +3,7 @@ package com.hniu.controller;
 import com.hniu.constan.StateCode;
 import com.hniu.entity.ReaderTypes;
 import com.hniu.service.ReaderTypeService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +35,7 @@ public class ReaderTypesController extends Base {
         }
         return packaging(StateCode.FAIL,readerTypes);
 	}
-
+	//@RequiresPermissions("reader_type:update")
 	// 修改读者类型信息
 	@PutMapping("/reader_type/{readerTypeId}")
 	public Object updateReaderType(ReaderTypes readerTypes) {
@@ -46,6 +47,7 @@ public class ReaderTypesController extends Base {
 	}
 
 	// 新增读者类型
+	//@RequiresPermissions("reader_type:insert")
 	@PostMapping("/reader_type")
 	public Object insertReaderType(ReaderTypes readerTypes) {
         if(readerTypeService.insert(readerTypes) > 0){
@@ -55,6 +57,7 @@ public class ReaderTypesController extends Base {
 	}
 
 	// 删除读者类型
+	//@RequiresPermissions("reader_type:delete")
 	@DeleteMapping("/reader_type/{readerTypeId}")
 	public Object deleteReaderType(@PathVariable Integer readerTypeId) {
         if(readerTypeService.deleteByPrimaryKey(readerTypeId) > 0){

@@ -4,6 +4,7 @@ import com.hniu.constan.StateCode;
 import com.hniu.service.BorrowHistoryService;
 import com.hniu.service.BorrowsService;
 import com.hniu.util.RedisUtil;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,11 +23,13 @@ public class BorrowsHistoryController extends Base {
     private RedisUtil redisUtil;
 
     @GetMapping("/borrowsHistory")
+//    @RequiresPermissions(value = {"book_history:select"})
     public Object selectAllHistory(Integer pageNum, Integer pageSize){
         return packaging(StateCode.SUCCESS,borrowHistoryService.selectAllBorrowHistorys(pageNum,pageSize));
     }
 
     @GetMapping("/borrowsHistory/{readerId}")
+//    @RequiresPermissions(value = {"book_history:select"})
     public Object selectByNameHistory(@PathVariable("readerId") Integer readerId, Integer pageNum, Integer pageSize){
         return packaging(StateCode.SUCCESS,borrowHistoryService.selectByReaderIdBorrowHistorys(readerId,pageNum,pageSize));
     }

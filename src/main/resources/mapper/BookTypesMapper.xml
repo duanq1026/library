@@ -14,7 +14,7 @@
     delete from tbl_book_types
     where book_type_id = #{bookTypeId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.hniu.entity.BookTypes">
+  <insert id="insert" parameterType="com.hniu.entity.BookTypes" keyProperty="bookTypeId" useGeneratedKeys="true">
     insert into tbl_book_types (book_type_id, book_type_name, father_node,
       class_number)
     values (#{bookTypeId,jdbcType=INTEGER}, #{bookTypeName,jdbcType=VARCHAR}, #{fatherNode,jdbcType=VARCHAR},
